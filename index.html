@@ -951,7 +951,7 @@ function enviarParaRD(nome, email, whatsapp, empresa) {
     }
   };
 
-  fetch('https://api.rd.guru/platform/conversions?api_key=9149d6f5208b05e678a099db76264786', {
+  fetch('https://api.rd.services/platform/conversions?api_key=9149d6f5208b05e678a099db76264786', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
