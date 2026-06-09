@@ -937,6 +937,33 @@ body {
 <script>
 var currentMode = 1;
 
+function enviarParaRD(nome, email, whatsapp, empresa) {
+  var payload = {
+    event_type: 'CONVERSION',
+    event_family: 'CDP',
+    payload: {
+      conversion_identifier: 'calculadora-custos-frota-versa',
+      name: nome,
+      email: email,
+      mobile_phone: whatsapp || '',
+      company_name: empresa || '',
+      tags: ['calculadora', 'lead-magnet', 'versa-fuel']
+    }
+  };
+
+  fetch('https://api.rd.guru/platform/conversions?api_key=9149d6f5208b05e678a099db76264786', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(function(r) {
+    console.log('RD lead enviado:', r.status);
+  })
+  .catch(function(e) {
+    console.warn('RD error:', e);
+  });
+}
+  
 function maskPhone(el) {
   var v = el.value.replace(/\D/g, '').substring(0, 11);
   if (v.length <= 2) { el.value = v.length ? '(' + v : ''; }
@@ -995,6 +1022,16 @@ function calcular() {
   var lWa = document.getElementById('lead-whatsapp').value.trim();
   if (!lNome || !lEmail || !lWa) { alert('Por favor, preencha seu nome, e-mail e WhatsApp antes de calcular.'); return; }
   if (!/\S+@\S+\.\S+/.test(lEmail)) { alert('Informe um e-mail válido.'); return; }
+
+  if (!window.rdLeadEnviado) {
+  enviarParaRD(
+    lNome,
+    lEmail,
+    lWa,
+    ''
+  );
+  window.rdLeadEnviado = true;
+  }
 
   if (!frota || !kmMes) { alert('Preencha todos os campos obrigatórios.'); return; }
   if (currentMode === 1 && !kml) { alert('Informe o consumo médio em km/l.'); return; }
