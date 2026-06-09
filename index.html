@@ -956,12 +956,31 @@ body {
 <script>
 var currentMode = 1;
 
+function getUtmParams() {
+  const params = new URLSearchParams(window.location.search);
+
+  return {
+    utm_source: params.get('utm_source') || '',
+    utm_medium: params.get('utm_medium') || '',
+    utm_campaign: params.get('utm_campaign') || '',
+    utm_term: params.get('utm_term') || '',
+    utm_content: params.get('utm_content') || ''
+  };
+}
+
 function enviarParaRD(nome, email, whatsapp, empresa) {
+  const utms = getUtmParams();
+
   const payload = {
     nome: nome,
     email: email,
     whatsapp: whatsapp || '',
-    empresa: empresa || ''
+    empresa: empresa || '',
+    utm_source: utms.utm_source,
+    utm_medium: utms.utm_medium,
+    utm_campaign: utms.utm_campaign,
+    utm_term: utms.utm_term,
+    utm_content: utms.utm_content
   };
 
   fetch('https://versafuel.com.br/wp-json/versa/v1/lead', {
