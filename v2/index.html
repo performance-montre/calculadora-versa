@@ -903,6 +903,39 @@ body {
       <div class="r-total-sub" id="r-frota-info">para uma frota de — veículos</div>
     </div>
 
+    <div class="bottom-cta result-lead-form" id="bottom-cta">
+      <div class="bc-title">Receba o diagnóstico da sua frota</div>
+      <div class="bc-sub">Preencha seus dados para receber o relatório e entender como a Versa pode reduzir deslocamentos, retrabalho e riscos no abastecimento.</div>
+
+      <div class="fields-grid lead-result-fields">
+        <div class="field">
+          <label>Nome completo</label>
+          <div class="input-wrap">
+            <input type="text" id="lead-nome" placeholder="Seu nome">
+          </div>
+        </div>
+        <div class="field">
+          <label>E-mail corporativo</label>
+          <div class="input-wrap">
+            <input type="email" id="lead-email" placeholder="voce@empresa.com.br">
+          </div>
+        </div>
+        <div class="field">
+          <label>WhatsApp</label>
+          <div class="input-wrap">
+            <input type="tel" id="lead-whatsapp" placeholder="(11) 9 0000-0000" oninput="maskPhone(this)">
+            <span class="input-suffix">📱</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="cta-btn lead-submit-btn" id="lead-submit-btn" onclick="enviarLeadResultado()">
+        Receber meu relatório →
+      </button>
+      <div class="lead-success" id="lead-success">Dados enviados com sucesso. A equipe da Versa entrará em contato.</div>
+    </div>
+
+
     <div class="pv-row">
           <div class="pv-card">
             <div class="pv-label">Por veículo / ano</div>
@@ -950,38 +983,6 @@ body {
         <div class="bd-val" id="r-fr">R$ 0</div>
         <div class="bd-pct" id="p-fr">0%</div>
       </div>
-    </div>
-
-    <div class="bottom-cta result-lead-form" id="bottom-cta">
-      <div class="bc-title">Receba o diagnóstico da sua frota</div>
-      <div class="bc-sub">Preencha seus dados para receber o relatório e entender como a Versa pode reduzir deslocamentos, retrabalho e riscos no abastecimento.</div>
-
-      <div class="fields-grid lead-result-fields">
-        <div class="field">
-          <label>Nome completo</label>
-          <div class="input-wrap">
-            <input type="text" id="lead-nome" placeholder="Seu nome">
-          </div>
-        </div>
-        <div class="field">
-          <label>E-mail corporativo</label>
-          <div class="input-wrap">
-            <input type="email" id="lead-email" placeholder="voce@empresa.com.br">
-          </div>
-        </div>
-        <div class="field">
-          <label>WhatsApp</label>
-          <div class="input-wrap">
-            <input type="tel" id="lead-whatsapp" placeholder="(11) 9 0000-0000" oninput="maskPhone(this)">
-            <span class="input-suffix">📱</span>
-          </div>
-        </div>
-      </div>
-
-      <button class="cta-btn lead-submit-btn" id="lead-submit-btn" onclick="enviarLeadResultado()">
-        Receber meu relatório →
-      </button>
-      <div class="lead-success" id="lead-success">Dados enviados com sucesso. A equipe da Versa entrará em contato.</div>
     </div>
 
     <span class="recalc-link" onclick="recalcular()">← Refazer o cálculo</span>
