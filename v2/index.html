@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculadora de Custos Ocultos — Versa Fuel</title>
+<title>Calculadora de Custos Ocultos — Versa Fuel | Versão B</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -516,6 +516,49 @@ body {
   color: #1a1a1a;
 }
 
+/* FORM BELOW RESULTS — A/B VERSION */
+.result-lead-form {
+  text-align: left;
+  padding: 34px 36px 32px;
+}
+
+.result-lead-form .bc-title,
+.result-lead-form .bc-sub {
+  text-align: center;
+}
+
+.result-lead-form .bc-sub {
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lead-result-fields {
+  max-width: 520px;
+  margin: 0 auto;
+  gap: 14px;
+}
+
+.lead-submit-btn {
+  max-width: 520px;
+  display: block;
+  margin: 24px auto 0;
+}
+
+.lead-success {
+  display: none;
+  max-width: 520px;
+  margin: 14px auto 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(0,229,160,0.28);
+  border-radius: var(--radius-sm);
+  background: rgba(0,229,160,0.08);
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
 .recalc-link {
   text-align: center;
   font-size: 13px;
@@ -751,34 +794,6 @@ body {
 
   <!-- FORM -->
   <div class="form-card" id="form-area">
-    <!-- LEAD UPFRONT -->
-    <div class="lead-upfront">
-      <div class="lead-upfront-label">
-        <span>✦</span> Seus dados para receber o relatório
-      </div>
-      <div class="fields-grid">
-        <div class="field">
-          <label>Nome completo</label>
-          <div class="input-wrap">
-            <input type="text" id="lead-nome" placeholder="Seu nome">
-          </div>
-        </div>
-        <div class="field">
-          <label>E-mail corporativo</label>
-          <div class="input-wrap">
-            <input type="email" id="lead-email" placeholder="voce@empresa.com.br">
-          </div>
-        </div>
-        <div class="field">
-          <label>WhatsApp</label>
-          <div class="input-wrap">
-            <input type="tel" id="lead-whatsapp" placeholder="(11) 9 0000-0000" oninput="maskPhone(this)">
-            <span class="input-suffix">📱</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="section-label">Dados da sua frota</div>
 
     <!-- MODE 1 -->
@@ -937,10 +952,36 @@ body {
       </div>
     </div>
 
-    <div class="bottom-cta" id="bottom-cta">
-      <div class="bc-title">Esses custos podem ser eliminados.</div>
-      <div class="bc-sub">Conheça como a Versa transforma o abastecimento da sua frota em vantagem operacional — com zero deslocamento, controle total e histórico de zero incidentes.</div>
-      <a class="bc-link" href="https://versafuel.com.br" target="_blank">Quero conhecer a Versa →</a>
+    <div class="bottom-cta result-lead-form" id="bottom-cta">
+      <div class="bc-title">Receba o diagnóstico da sua frota</div>
+      <div class="bc-sub">Preencha seus dados para receber o relatório e entender como a Versa pode reduzir deslocamentos, retrabalho e riscos no abastecimento.</div>
+
+      <div class="fields-grid lead-result-fields">
+        <div class="field">
+          <label>Nome completo</label>
+          <div class="input-wrap">
+            <input type="text" id="lead-nome" placeholder="Seu nome">
+          </div>
+        </div>
+        <div class="field">
+          <label>E-mail corporativo</label>
+          <div class="input-wrap">
+            <input type="email" id="lead-email" placeholder="voce@empresa.com.br">
+          </div>
+        </div>
+        <div class="field">
+          <label>WhatsApp</label>
+          <div class="input-wrap">
+            <input type="tel" id="lead-whatsapp" placeholder="(11) 9 0000-0000" oninput="maskPhone(this)">
+            <span class="input-suffix">📱</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="cta-btn lead-submit-btn" id="lead-submit-btn" onclick="enviarLeadResultado()">
+        Receber meu relatório →
+      </button>
+      <div class="lead-success" id="lead-success">Dados enviados com sucesso. A equipe da Versa entrará em contato.</div>
     </div>
 
     <span class="recalc-link" onclick="recalcular()">← Refazer o cálculo</span>
@@ -1063,23 +1104,6 @@ function calcular() {
     kml = vehicleKml[selectedVehicle] || 8.5;
   }
 
-  // Validate lead fields
-  var lNome = document.getElementById('lead-nome').value.trim();
-  var lEmail = document.getElementById('lead-email').value.trim();
-  var lWa = document.getElementById('lead-whatsapp').value.trim();
-  if (!lNome || !lEmail || !lWa) { alert('Por favor, preencha seu nome, e-mail e WhatsApp antes de calcular.'); return; }
-  if (!/\S+@\S+\.\S+/.test(lEmail)) { alert('Informe um e-mail válido.'); return; }
-
-  if (!window.rdLeadEnviado) {
-  enviarParaRD(
-    lNome,
-    lEmail,
-    lWa,
-    ''
-  );
-  window.rdLeadEnviado = true;
-  }
-
   if (!frota || !kmMes) { alert('Preencha todos os campos obrigatórios.'); return; }
   if (currentMode === 1 && !kml) { alert('Informe o consumo médio em km/l.'); return; }
   if (currentMode === 2 && (!combustivel || combustivel === 'diesel')) return;
@@ -1148,11 +1172,38 @@ function unlockResults() {
   document.getElementById('bottom-cta').style.display = 'block';
 }
 
+function enviarLeadResultado() {
+  var lNome = document.getElementById('lead-nome').value.trim();
+  var lEmail = document.getElementById('lead-email').value.trim();
+  var lWa = document.getElementById('lead-whatsapp').value.trim();
+
+  if (!lNome || !lEmail || !lWa) {
+    alert('Por favor, preencha seu nome, e-mail e WhatsApp para receber o relatório.');
+    return;
+  }
+
+  if (!/\S+@\S+\.\S+/.test(lEmail)) {
+    alert('Informe um e-mail válido.');
+    return;
+  }
+
+  if (!window.rdLeadEnviado) {
+    enviarParaRD(lNome, lEmail, lWa, '');
+    window.rdLeadEnviado = true;
+  }
+
+  var btn = document.getElementById('lead-submit-btn');
+  btn.textContent = 'Relatório solicitado ✓';
+  btn.disabled = true;
+  document.getElementById('lead-success').style.display = 'block';
+  sendHeight();
+}
+
 function recalcular() {
   document.getElementById('form-area').style.display = 'block';
   document.querySelector('.mode-toggle').style.display = 'flex';
   document.getElementById('results').classList.remove('show');
-  // lead fields kept — user already identified
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function hideResults() {
