@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Custos Ocultos — Versa Fuel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #2a2a2a;
+  --bg-card: #333333;
+  --bg-dark: #1e1e1e;
+  --green: #00e5a0;
+  --green-dark: #00b87d;
+  --white: #ffffff;
+  --gray-light: rgba(255,255,255,0.7);
+  --gray-muted: rgba(255,255,255,0.45);
+  --border: rgba(255,255,255,0.1);
+  --radius: 24px;
+  --radius-sm: 12px;
+  --font-display: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0;
+}
+
+.page {
+  width: 100%;
+  max-width: 760px;
+  padding: 56px 32px 64px;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.logo-wrap {
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 16px;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.subhead {
+  font-size: 16px;
+  color: var(--gray-light);
+  line-height: 1.65;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* MODE TOGGLE */
+.mode-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 36px;
+}
+
+.mode-inner {
+  display: flex;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 5px;
+  gap: 4px;
+}
+
+.mode-btn {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 10px 24px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.22s;
+  color: var(--gray-muted);
+  background: transparent;
+}
+
+.mode-btn.active {
+  background: var(--green);
+  color: #1a1a1a;
+}
+
+.mode-btn:hover:not(.active) {
+  color: var(--white);
+}
+
+/* FORM CARD */
+.form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 36px 32px;
+  margin-bottom: 20px;
+}
+
+.section-label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gray-muted);
+  margin-bottom: 22px;
+}
+
+.fields-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.fields-2 { grid-template-columns: 1fr 1fr; }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.1px;
+}
+
+.input-wrap {
+  position: relative;
+}
+
+.input-wrap input,
+.input-wrap select {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-sm);
+  padding: 13px 52px 13px 16px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+  outline: none;
+  transition: border-color 0.18s, background 0.18s;
+  -moz-appearance: textfield;
+}
+
+.input-wrap input::-webkit-inner-spin-button,
+.input-wrap input::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+.input-wrap input:focus,
+.input-wrap select:focus {
+  border-color: var(--green);
+  background: rgba(0,229,160,0.06);
+}
+
+.input-wrap input::placeholder { color: rgba(255,255,255,0.2); font-weight: 400; }
+
+.input-suffix {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.3);
+  pointer-events: none;
+}
+
+.input-wrap select {
+  cursor: pointer;
+  appearance: none;
+  padding-right: 40px;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: rgba(255,255,255,0.35);
+  font-size: 12px;
+}
+
+.select-arrow::after { content: '▾'; }
+
+/* VEHICLE TYPES */
+.vehicle-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.vehicle-opt {
+  padding: 14px 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.18s;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.vehicle-opt:hover {
+  border-color: rgba(0,229,160,0.4);
+  color: rgba(255,255,255,0.85);
+}
+
+.vehicle-opt.selected {
+  border-color: var(--green);
+  background: rgba(0,229,160,0.1);
+  color: var(--green);
+}
+
+.vehicle-icon { font-size: 22px; }
+
+/* DIESEL WARNING */
+.diesel-warning {
+  display: none;
+  background: rgba(255,80,80,0.1);
+  border: 1px solid rgba(255,80,80,0.35);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  font-size: 13px;
+  color: #ff9090;
+  line-height: 1.55;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.diesel-warning.show { display: flex; }
+
+.diesel-warning strong { color: #ffaaaa; display: block; margin-bottom: 3px; font-size: 13px; }
+
+/* CTA BUTTON */
+.cta-btn {
+  width: 100%;
+  background: var(--green);
+  color: #1a1a1a;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 17px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  margin-top: 28px;
+  transition: opacity 0.18s, transform 0.1s;
+}
+
+.cta-btn:hover { opacity: 0.88; }
+.cta-btn:active { transform: scale(0.99); }
+.cta-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* RESULTS */
+.results { display: none; }
+.results.show { display: block; }
+
+/* TOTAL BLOCK — green card like screenshot */
+.result-total-card {
+  background: var(--green);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.result-total-card::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+}
+
+.result-total-card::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: -40px;
+  width: 160px; height: 160px;
+  background: rgba(0,0,0,0.06);
+  border-radius: 50%;
+}
+
+.r-eyebrow {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.55);
+  margin-bottom: 10px;
+  position: relative; z-index: 1;
+}
+
+.r-total-value {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 900;
+  color: #1a1a1a;
+  line-height: 1;
+  margin-bottom: 6px;
+  position: relative; z-index: 1;
+}
+
+.r-total-sub {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(0,0,0,0.5);
+  position: relative; z-index: 1;
+}
+
+/* PER VEHICLE ROW */
+.pv-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.pv-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 22px 20px;
+  text-align: center;
+}
+
+.pv-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-muted);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.pv-value {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--white);
+}
+
+.pv-card.highlight .pv-value { color: var(--green); }
+
+/* BREAKDOWN CARD */
+.breakdown-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.breakdown-header {
+  padding: 18px 24px 14px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gray-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.breakdown-row {
+  display: flex;
+  align-items: center;
+  padding: 15px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  gap: 14px;
+}
+
+.breakdown-row:last-child { border-bottom: none; }
+
+.bd-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.bd-name {
+  font-size: 14px;
+  color: rgba(255,255,255,0.65);
+  flex: 1;
+}
+
+.bd-bar-wrap {
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  flex: 0 0 72px;
+}
+
+.bd-bar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.7s cubic-bezier(.4,0,.2,1);
+}
+
+.bd-val {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  min-width: 90px;
+  text-align: right;
+}
+
+.bd-pct {
+  font-size: 12px;
+  color: var(--gray-muted);
+  min-width: 34px;
+  text-align: right;
+}
+
+/* BOTTOM CTA */
+.bottom-cta {
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 36px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.bc-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+
+.bc-sub {
+  font-size: 14px;
+  color: var(--gray-muted);
+  line-height: 1.65;
+  margin-bottom: 22px;
+}
+
+.bc-link {
+  display: inline-block;
+  padding: 14px 36px;
+  background: transparent;
+  border: 2px solid var(--green);
+  border-radius: 50px;
+  color: var(--green);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.bc-link:hover {
+  background: var(--green);
+  color: #1a1a1a;
+}
+
+.recalc-link {
+  text-align: center;
+  font-size: 13px;
+  color: var(--gray-muted);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 4px 0 8px;
+  display: block;
+}
+
+.recalc-link:hover { color: var(--white); }
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 28px 0 0;
+  font-size: 11px;
+  color: rgba(255,255,255,0.2);
+  line-height: 1.7;
+  border-top: 1px solid var(--border);
+  margin-top: 16px;
+}
+
+/* MODES */
+.mode-pane { display: none; }
+.mode-pane.active { display: block; }
+
+@media (max-width: 600px) {
+  .page { padding: 36px 16px 48px; }
+  .headline { font-size: 26px; }
+  .r-total-value { font-size: 40px; }
+  .fields-2 { grid-template-columns: 1fr; }
+  .pv-row { grid-template-columns: 1fr; }
+  .form-card { padding: 24px 20px; }
+}
+
+/* LEAD GATE */
+.locked-wrap {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.locked-blur {
+  filter: blur(6px);
+  user-select: none;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: filter 0.5s, opacity 0.5s;
+}
+
+.locked-blur.unlocked {
+  filter: none;
+  opacity: 1;
+  pointer-events: auto;
+  user-select: auto;
+}
+
+.lead-gate {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(26,26,26,0.82);
+  backdrop-filter: blur(2px);
+  border-radius: var(--radius);
+  border: 1px solid rgba(0,229,160,0.2);
+  padding: 36px 32px;
+  text-align: center;
+  gap: 0;
+  z-index: 10;
+}
+
+.lead-gate.hidden { display: none; }
+
+.gate-icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.gate-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.gate-sub {
+  font-size: 13px;
+  color: var(--gray-muted);
+  line-height: 1.6;
+  max-width: 320px;
+  margin-bottom: 22px;
+}
+
+.gate-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 360px;
+  margin-bottom: 14px;
+}
+
+.gate-input {
+  width: 100%;
+  background: rgba(255,255,255,0.08);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius-sm);
+  padding: 13px 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--white);
+  outline: none;
+  transition: border-color 0.18s;
+}
+
+.gate-input:focus { border-color: var(--green); }
+.gate-input::placeholder { color: rgba(255,255,255,0.25); }
+
+.gate-btn {
+  width: 100%;
+  max-width: 360px;
+  background: var(--green);
+  color: #1a1a1a;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: opacity 0.18s;
+}
+
+.gate-btn:hover { opacity: 0.88; }
+
+.gate-note {
+  font-size: 11px;
+  color: rgba(255,255,255,0.2);
+  margin-top: 10px;
+}
+
+
+/* LEAD UPFRONT */
+.lead-upfront {
+  background: rgba(0,229,160,0.06);
+  border: 1.5px solid rgba(0,229,160,0.25);
+  border-radius: var(--radius-sm);
+  padding: 20px 20px 4px;
+  margin-bottom: 24px;
+}
+
+.lead-upfront-label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.lead-upfront .fields-grid {
+  margin-bottom: 0;
+}
+
+.lead-upfront .field {
+  margin-bottom: 16px;
+}
+
+ /* Select - ajuste visual do dropdown */
+.input-wrap select {
+  background-color: #333333 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.input-wrap select option {
+  background: #333333 !important;
+  color: #ffffff !important;
+}
+
+.input-wrap select option:hover,
+.input-wrap select option:focus,
+.input-wrap select option:checked {
+  background: #00e5a0 !important;
+  color: #1a1a1a !important;
+}
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-wrap">
+      <svg viewBox="0 0 768 432" xmlns="http://www.w3.org/2000/svg" style="height:100px;width:auto;display:block;margin:0 auto;">
+<path d="M0 0 C16.22519443 13.25526481 20.75353064 36.17111849 26.90234375 55.21875 C27.62000445 57.4265748 28.3381007 59.63425807 29.05664062 61.84179688 C29.7490825 63.97383347 30.44115286 66.10599076 31.1328125 68.23828125 C31.44848679 69.21142776 31.76416107 70.18457428 32.08940125 71.18721008 C33.56388161 75.75591435 35.02034401 80.33029861 36.4387207 84.91674805 C36.68483597 85.70929489 36.93095123 86.50184174 37.18452454 87.31840515 C37.71484375 89.40625 37.71484375 89.40625 37.71484375 92.40625 C31.77484375 92.40625 25.83484375 92.40625 19.71484375 92.40625 C18.54454953 88.94910535 17.37845762 85.49064258 16.21484375 82.03125 C15.88097656 81.04640625 15.54710937 80.0615625 15.203125 79.046875 C14.88730469 78.10585938 14.57148437 77.16484375 14.24609375 76.1953125 C13.95283203 75.32600098 13.65957031 74.45668945 13.35742188 73.56103516 C12.71484375 71.40625 12.71484375 71.40625 12.71484375 69.40625 C10.42817842 71.62362245 8.21079011 73.79050361 6.2109375 76.2734375 C-1.33657701 85.62144342 -11.44144177 91.37829889 -23.28515625 93.40625 C-40.34616315 94.96969098 -55.08997106 92.63900707 -68.625 81.4765625 C-78.39702406 72.35600671 -83.83836107 60.56110053 -89.59765625 48.71875 C-90.11368408 47.66171875 -90.62971191 46.6046875 -91.16137695 45.515625 C-96.08610731 35.17943179 -100.52177463 25.16863144 -97.22265625 13.71875 C-93.23224042 6.89642617 -87.37012745 3.52547595 -80.09765625 0.90625 C-79.32808594 0.61854736 -78.55851562 0.33084473 -77.765625 0.03442383 C-51.63240803 -9.53707696 -24.87297058 -17.34730256 0 0 Z M-64.28515625 17.40625 C-71.12102077 26.0112306 -73.97574584 34.95292185 -73.07421875 45.98828125 C-71.37535596 56.165431 -66.43201644 65.88931981 -58.03125 72.0625 C-48.30264603 78.2741908 -38.50715455 81.09075697 -27.08203125 78.75 C-15.54355809 75.63729561 -7.67919563 69.48381206 -1.28515625 59.40625 C3.01539795 50.74189816 4.08053384 40.87646526 1.47265625 31.546875 C-2.79072404 19.5039245 -9.09467419 12.42831247 -20.28515625 6.40625 C-36.23371989 -0.22800099 -53.07877436 5.15969607 -64.28515625 17.40625 Z " fill="#FFFFFF" transform="translate(511.28515625,182.59375)"/>
+<path d="M0 0 C9.97844984 7.78236734 9.97844984 7.78236734 12 14 C10.33664694 15.69087177 8.66943461 17.37764845 7 19.0625 C6.54238281 19.52849609 6.08476562 19.99449219 5.61328125 20.47460938 C2.91849761 23.18785044 0.15344131 25.75669953 -2.75 28.24609375 C-7.7534592 32.57834271 -12.35779596 37.28745954 -17 42 C-22.23120646 47.31046716 -27.46869655 52.50292512 -33.12890625 57.35595703 C-36.22546653 60.07676038 -39.10845361 63.0021423 -42 65.9375 C-42.58394531 66.52595703 -43.16789062 67.11441406 -43.76953125 67.72070312 C-45.18204805 69.14479793 -46.5913781 70.5720525 -48 72 C-39.51270712 78.7034592 -29.4293873 79.10171376 -19 78 C-10.57738373 76.38482873 -3.76205741 73.24190497 3 68 C4.65720607 82.88137576 4.65720607 82.88137576 1.0078125 87.546875 C-1.91948279 89.46446554 -4.72848286 90.76084876 -8 92 C-8.97582031 92.42539062 -9.95164062 92.85078125 -10.95703125 93.2890625 C-22.91512084 97.80212841 -37.54389171 97.94494332 -49.4375 93.1875 C-50.7059375 92.5996875 -50.7059375 92.5996875 -52 92 C-52.78375 91.649375 -53.5675 91.29875 -54.375 90.9375 C-67.92245726 84.16377137 -76.43904902 72.59059632 -81.2734375 58.5078125 C-85.41600211 44.20928302 -82.74352031 29.92222787 -75.8515625 16.953125 C-67.88502273 4.24699827 -56.37296233 -3.99194754 -42 -8 C-27.0159248 -10.98487554 -12.70048149 -8.55942203 0 0 Z M-59.23828125 22.62890625 C-65.03989311 30.43728407 -67.03807002 39.40122271 -66 49 C-64.90803788 52.77656769 -63.53957207 56.38475488 -62 60 C-57.481517 56.16817813 -53.02771994 52.28290315 -48.6875 48.25 C-48.07938477 47.68506836 -47.47126953 47.12013672 -46.84472656 46.53808594 C-38.61203587 38.80291037 -30.69238176 30.7417643 -22.7487793 22.71191406 C-21.91648048 21.87321777 -21.91648048 21.87321777 -21.06736755 21.01757812 C-20.01630367 19.95823815 -18.96733228 18.8968166 -17.92079163 17.83300781 C-15.70067115 15.59757649 -13.63434289 13.75622859 -11 12 C-11 11.34 -11 10.68 -11 10 C-29.51981274 0.63558001 -46.51496081 7.80586298 -59.23828125 22.62890625 Z " fill="#FFFFFF" transform="translate(245,181)"/>
+<path d="M0 0 C6.6 0 13.2 0 20 0 C30.76037578 24.29322431 41.49338229 48.59577026 52 73 C54.0207467 70.42048964 55.66225937 67.90904222 57.09375 64.96362305 C57.47880203 64.17654465 57.86385406 63.38946625 58.26057434 62.57853699 C58.66958481 61.73148697 59.07859528 60.88443695 59.5 60.01171875 C59.93265671 59.12402298 60.36531342 58.23632721 60.81108093 57.32173157 C62.21149451 54.44563123 63.60580393 51.56661867 65 48.6875 C65.95516697 46.72315261 66.91065223 44.75895995 67.86645508 42.79492188 C73.2891352 31.64189184 78.69180091 20.47877071 83.97851562 9.26049805 C84.36072266 8.45265869 84.74292969 7.64481934 85.13671875 6.8125 C85.45342529 6.13832031 85.77013184 5.46414062 86.09643555 4.76953125 C87 3 87 3 89 0 C90.97119141 -0.34057617 90.97119141 -0.34057617 93.3515625 -0.29296875 C94.62773437 -0.2784668 94.62773437 -0.2784668 95.9296875 -0.26367188 C96.81914062 -0.23853516 97.70859375 -0.21339844 98.625 -0.1875 C99.97078125 -0.16719727 99.97078125 -0.16719727 101.34375 -0.14648438 C103.56312768 -0.11106877 105.78116511 -0.05914015 108 0 C106.08537819 6.24312952 103.70694474 12.02724666 100.7890625 17.86328125 C100.38438751 18.68511398 99.97971252 19.50694672 99.56277466 20.35368347 C98.70023966 22.10462107 97.83530538 23.85437852 96.96813965 25.60302734 C94.6923834 30.19383764 92.43599626 34.79413913 90.1796875 39.39453125 C89.73202026 40.30659332 89.28435303 41.2186554 88.82312012 42.15835571 C83.47872495 53.06956308 78.38695208 64.0917202 73.31933594 75.13378906 C71.35965467 79.39112772 69.37139184 83.63477621 67.375 87.875 C67.06788086 88.52919922 66.76076172 89.18339844 66.44433594 89.85742188 C64.68090873 93.60094311 62.85143853 97.29712295 61 101 C55.39 101 49.78 101 44 101 C37.08787364 86.10366238 30.38317095 71.12687563 23.82841492 56.07058716 C23.52925674 55.38342621 23.23009857 54.69626526 22.921875 53.98828125 C22.61735916 53.28863251 22.31284332 52.58898376 21.99909973 51.86813354 C19.39764307 45.89759229 16.77102194 39.93830711 14.140625 33.98046875 C12.89831777 31.16345855 11.65620099 28.34636442 10.41409302 25.52926636 C9.5997851 23.68417302 8.78442512 21.83954361 7.96798706 19.99539185 C6.82344731 17.40964065 5.68282567 14.82219318 4.54296875 12.234375 C4.19884949 11.45978439 3.85473022 10.68519379 3.50018311 9.88713074 C3.18454407 9.1686647 2.86890503 8.45019867 2.54370117 7.70996094 C2.26838058 7.08700134 1.99306 6.46404175 1.70939636 5.82220459 C1 4 1 4 0 0 Z " fill="#FFFFFF" transform="translate(49,174)"/>
+<path d="M0 0 C-0.53484401 5.34844008 -2.46690767 9.35796103 -5 14 C-5.78375 13.731875 -6.5675 13.46375 -7.375 13.1875 C-8.57125 12.795625 -9.7675 12.40375 -11 12 C-11.75023437 11.73574219 -12.50046875 11.47148437 -13.2734375 11.19921875 C-20.50378673 8.79290378 -27.07384152 7.71507541 -34.4375 10.125 C-37.69011596 12.5049629 -38.76753564 14.15761112 -40 18 C-40.28889746 22.46477894 -39.78191954 25.03763749 -36.91796875 28.5625 C-33.5982544 31.33559472 -30.35724915 32.62494018 -26.3125 33.9375 C-16.23469543 37.49261712 -7.41140212 41.26661994 -2 51 C2.10627605 59.63410895 2.14509859 68.55212823 -0.90625 77.55078125 C-4.96460582 86.63859945 -11.90697321 92.22446778 -21.06640625 95.80859375 C-30.7785493 98.65356495 -41.28782999 97.32183924 -50.296875 92.86328125 C-54.43887274 90.39521117 -57.75312303 87.55127169 -61 84 C-59.02 80.04 -57.04 76.08 -55 72 C-51.6333939 72 -50.88453864 72.53441742 -48.1875 74.375 C-41.30990348 78.77317314 -35.11746952 79.91982657 -27 79 C-22.523873 77.70852729 -19.77913092 76.0152312 -16.9375 72.3125 C-15.72373842 68.02387576 -15.64086236 64.27051444 -17 60 C-20.20263073 54.42983311 -24.93624164 53.07298104 -30.6875 51 C-50.70934734 43.62116188 -50.70934734 43.62116188 -56 35 C-59.05204722 27.53827077 -59.41842692 18.78719085 -57.125 11.046875 C-53.54687421 3.37273678 -48.01322422 -2.75721249 -40.21484375 -6.21484375 C-25.93274425 -11.27781024 -12.45145189 -8.03319477 0 0 Z " fill="#FFFFFF" transform="translate(398,180)"/>
+<path d="M0 0 C0 5.61 0 11.22 0 17 C-2.31 17.66 -4.62 18.32 -7 19 C-15.66816324 21.67732259 -22.92873616 25.76639049 -27.63671875 33.7890625 C-30.595901 40.08050442 -32.09330725 45.65552165 -32.20532227 52.61645508 C-32.22526749 53.71721878 -32.24521271 54.81798248 -32.26576233 55.95210266 C-32.29083107 57.71797981 -32.29083107 57.71797981 -32.31640625 59.51953125 C-32.33718735 60.73323898 -32.35796844 61.94694672 -32.37937927 63.19743347 C-32.44468916 67.06906551 -32.50367363 70.94076455 -32.5625 74.8125 C-32.60570285 77.43946002 -32.64931771 80.06641329 -32.69335938 82.69335938 C-32.80035162 89.12883782 -32.9016715 95.56438358 -33 102 C-38.94 102 -44.88 102 -51 102 C-51.09984062 94.60257781 -51.17192389 87.20555902 -51.21972656 79.80761719 C-51.23968165 77.29778194 -51.26685553 74.7879922 -51.30175781 72.27832031 C-51.59165057 50.87741368 -51.21906336 31.76630188 -35.8125 15.1875 C-26.06126089 6.03429259 -13.47702888 0 0 0 Z " fill="#FFFFFF" transform="translate(325,173)"/>
+<path d="M0 0 C0.99 0 1.98 0 3 0 C3.01458252 1.15000488 3.02916504 2.30000977 3.04418945 3.48486328 C3.10233762 7.76788805 3.17956924 12.05039616 3.26245117 16.33300781 C3.29562296 18.18350819 3.32367887 20.03410786 3.34643555 21.88476562 C3.3801245 24.55121003 3.4324466 27.2167509 3.48828125 29.8828125 C3.49467117 30.70492218 3.5010611 31.52703186 3.50764465 32.37405396 C3.6325515 37.29832601 4.29805821 40.72729373 7 45 C12.17683002 49.67177343 15.39353498 50.3478341 22.234375 50.28515625 C27.0473343 49.7889048 29.71534029 47.46185415 32.8125 43.9375 C35.48247686 39.58122196 35.21780574 35.11742271 35.31640625 30.17578125 C35.33718735 29.31438034 35.35796844 28.45297943 35.37937927 27.56547546 C35.44474909 24.81456456 35.50370132 22.06355844 35.5625 19.3125 C35.60569717 17.44725579 35.64931185 15.5820212 35.69335938 13.71679688 C35.80041763 9.14462876 35.90172054 4.5723649 36 0 C36.99 0 37.98 0 39 0 C39.09924533 5.71080516 39.17164621 11.42110281 39.21972656 17.13256836 C39.23978028 19.07341258 39.26703045 21.01419685 39.30175781 22.95483398 C39.35055175 25.75259232 39.37303127 28.54954845 39.390625 31.34765625 C39.41127014 32.2083522 39.43191528 33.06904816 39.45318604 33.95582581 C39.45534792 39.82573376 38.38272305 43.17423488 35 48 C29.20474729 53.36060876 24.82341392 54.46412865 17.04296875 54.3125 C11.11316731 53.70353451 6.97245727 51.39174109 3.0625 46.9375 C0.60767487 43.44123391 -0.12635012 41.06378813 -0.11352539 36.89575195 C-0.11344986 36.07512772 -0.11337433 35.25450348 -0.11329651 34.40901184 C-0.10813522 33.52767075 -0.10297394 32.64632965 -0.09765625 31.73828125 C-0.0962413 30.83248825 -0.09482635 29.92669525 -0.09336853 28.99345398 C-0.08777001 26.09976909 -0.07521781 23.20616151 -0.0625 20.3125 C-0.05748481 18.35091258 -0.05292193 16.38932394 -0.04882812 14.42773438 C-0.03780107 9.61845979 -0.02053747 4.809243 0 0 Z " fill="#FFFFFF" transform="translate(619,222)"/>
+<path d="M0 0 C9.57 0 19.14 0 29 0 C29 0.99 29 1.98 29 3 C20.42 3 11.84 3 3 3 C3 10.26 3 17.52 3 25 C11.25 25 19.5 25 28 25 C28 25.99 28 26.98 28 28 C19.75 28 11.5 28 3 28 C3.33 35.26 3.66 42.52 4 50 C16.87 50.495 16.87 50.495 30 51 C30 51.66 30 52.32 30 53 C20.1 53 10.2 53 0 53 C0 35.51 0 18.02 0 0 Z " fill="#FFFFFF" transform="translate(674,222)"/>
+<path d="M0 0 C9.9 0 19.8 0 30 0 C30 0.99 30 1.98 30 3 C21.09 3 12.18 3 3 3 C3 10.26 3 17.52 3 25 C10.92 25 18.84 25 27 25 C27 25.99 27 26.98 27 28 C19.08 28 11.16 28 3 28 C3 36.25 3 44.5 3 53 C2.01 53 1.02 53 0 53 C0 35.51 0 18.02 0 0 Z " fill="#FFFFFF" transform="translate(576,222)"/>
+<path d="M0 0 C0.99 0 1.98 0 3 0 C3.33 16.5 3.66 33 4 50 C12.25 50.33 20.5 50.66 29 51 C29 51.66 29 52.32 29 53 C19.43 53 9.86 53 0 53 C0 35.51 0 18.02 0 0 Z " fill="#FFFFFF" transform="translate(717,222)"/>
+</svg>
+    </div>
+    <div class="eyebrow">Calculadora de Custos Ocultos</div>
+    <h1 class="headline">Quanto sua frota perde<br>por não usar a Versa?</h1>
+    <p class="subhead">Descubra os custos invisíveis do abastecimento tradicional: mão de obra, combustível desperdiçado, desgaste e fraudes.</p>
+  </div>
+
+  <!-- MODE TOGGLE -->
+  <div class="mode-toggle">
+    <div class="mode-inner">
+      <button class="mode-btn active" onclick="setMode(1)">Simplificado</button>
+      <button class="mode-btn" onclick="setMode(2)">Detalhado</button>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-card" id="form-area">
+    <!-- LEAD UPFRONT -->
+    <div class="lead-upfront">
+      <div class="lead-upfront-label">
+        <span>✦</span> Seus dados para receber o relatório
+      </div>
+      <div class="fields-grid">
+        <div class="field">
+          <label>Nome completo</label>
+          <div class="input-wrap">
+            <input type="text" id="lead-nome" placeholder="Seu nome">
+          </div>
+        </div>
+        <div class="field">
+          <label>E-mail corporativo</label>
+          <div class="input-wrap">
+            <input type="email" id="lead-email" placeholder="voce@empresa.com.br">
+          </div>
+        </div>
+        <div class="field">
+          <label>WhatsApp</label>
+          <div class="input-wrap">
+            <input type="tel" id="lead-whatsapp" placeholder="(11) 9 0000-0000" oninput="maskPhone(this)">
+            <span class="input-suffix">📱</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">Dados da sua frota</div>
+
+    <!-- MODE 1 -->
+    <div class="mode-pane active" id="pane-1">
+      <div class="fields-grid">
+        <div class="field">
+          <label>Tamanho da frota</label>
+          <div class="input-wrap">
+            <input type="number" id="m1-frota" placeholder="Ex: 10" min="1">
+            <span class="input-suffix">veículos</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Consumo médio (km/l)</label>
+          <div class="input-wrap">
+            <input type="number" id="m1-kml" placeholder="Ex: 8" min="1" step="0.1">
+            <span class="input-suffix">km/l</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Km's por veículo / mês</label>
+          <div class="input-wrap">
+            <input type="number" id="m1-km" placeholder="Ex: 3.300" min="1">
+            <span class="input-suffix">km/mês</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODE 2 -->
+    <div class="mode-pane" id="pane-2">
+      <div class="fields-grid">
+        <div class="fields-grid fields-2">
+          <div class="field">
+            <label>Tamanho da frota</label>
+            <div class="input-wrap">
+              <input type="number" id="m2-frota" placeholder="Ex: 10" min="1">
+              <span class="input-suffix">veículos</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Km's por veículo / mês</label>
+            <div class="input-wrap">
+              <input type="number" id="m2-km" placeholder="Ex: 3.300" min="1">
+              <span class="input-suffix">km/mês</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Combustível utilizado</label>
+          <div class="input-wrap">
+            <select id="m2-comb" onchange="checkDiesel()">
+              <option value="">Selecione o combustível</option>
+              <option value="etanol">Etanol</option>
+              <option value="gasolina">Gasolina</option>
+              <option value="diesel">Diesel</option>
+            </select>
+            <span class="select-arrow"></span>
+          </div>
+        </div>
+
+        <div class="diesel-warning" id="diesel-warn">
+          <div>⚠</div>
+          <div>
+            <strong>Combustível não atendido</strong>
+            A Versa Fuel atua exclusivamente com frotas movidas a gasolina e etanol. Para frotas a diesel, entre em contato para conhecer outras soluções.
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Tipo de veículo</label>
+          <div class="vehicle-grid">
+            <div class="vehicle-opt" onclick="selectVehicle('passeio')" id="v-passeio">
+              <span class="vehicle-icon">🚗</span>
+              Carro de passeio
+            </div>
+            <div class="vehicle-opt" onclick="selectVehicle('utilitario')" id="v-utilitario">
+              <span class="vehicle-icon">🚐</span>
+              Utilitário leve
+            </div>
+            <div class="vehicle-opt" onclick="selectVehicle('moto')" id="v-moto">
+              <span class="vehicle-icon">🏍</span>
+              Moto
+            </div>
+            <div class="vehicle-opt" onclick="selectVehicle('suv')" id="v-suv">
+              <span class="vehicle-icon">🚙</span>
+              SUV
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="cta-btn" id="calc-btn" onclick="calcular()">
+      Calcular meus custos ocultos →
+    </button>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results" id="results">
+
+    <!-- VISIBLE: main number always shown -->
+    <div class="result-total-card">
+      <div class="r-eyebrow">Custo oculto anual estimado</div>
+      <div class="r-total-value" id="r-total">R$ 0</div>
+      <div class="r-total-sub" id="r-frota-info">para uma frota de — veículos</div>
+    </div>
+
+    <div class="pv-row">
+          <div class="pv-card">
+            <div class="pv-label">Por veículo / ano</div>
+            <div class="pv-value" id="r-por-veiculo">R$ 0</div>
+          </div>
+          <div class="pv-card highlight">
+            <div class="pv-label">Economia c/ Versa / ano</div>
+            <div class="pv-value" id="r-economia">R$ 0</div>
+          </div>
+        </div>
+        <div class="breakdown-card">
+      <div class="breakdown-header">Composição dos custos ocultos</div>
+      <div class="breakdown-row">
+        <div class="bd-dot" style="background:#00e5a0"></div>
+        <div class="bd-name">Mão de obra para abastecer</div>
+        <div class="bd-bar-wrap"><div class="bd-bar" id="bar-l" style="background:#00e5a0;width:0%"></div></div>
+        <div class="bd-val" id="r-l">R$ 0</div>
+        <div class="bd-pct" id="p-l">0%</div>
+      </div>
+      <div class="breakdown-row">
+        <div class="bd-dot" style="background:#5BB8D0"></div>
+        <div class="bd-name">Combustível para deslocamento</div>
+        <div class="bd-bar-wrap"><div class="bd-bar" id="bar-f" style="background:#5BB8D0;width:0%"></div></div>
+        <div class="bd-val" id="r-f">R$ 0</div>
+        <div class="bd-pct" id="p-f">0%</div>
+      </div>
+      <div class="breakdown-row">
+        <div class="bd-dot" style="background:#E8A44A"></div>
+        <div class="bd-name">Manutenção dos desvios</div>
+        <div class="bd-bar-wrap"><div class="bd-bar" id="bar-m" style="background:#E8A44A;width:0%"></div></div>
+        <div class="bd-val" id="r-m">R$ 0</div>
+        <div class="bd-pct" id="p-m">0%</div>
+      </div>
+      <div class="breakdown-row">
+        <div class="bd-dot" style="background:#9B87D4"></div>
+        <div class="bd-name">Depreciação adicional</div>
+        <div class="bd-bar-wrap"><div class="bd-bar" id="bar-d" style="background:#9B87D4;width:0%"></div></div>
+        <div class="bd-val" id="r-d">R$ 0</div>
+        <div class="bd-pct" id="p-d">0%</div>
+      </div>
+      <div class="breakdown-row">
+        <div class="bd-dot" style="background:#E8626A"></div>
+        <div class="bd-name">Risco de fraudes</div>
+        <div class="bd-bar-wrap"><div class="bd-bar" id="bar-fr" style="background:#E8626A;width:0%"></div></div>
+        <div class="bd-val" id="r-fr">R$ 0</div>
+        <div class="bd-pct" id="p-fr">0%</div>
+      </div>
+    </div>
+
+    <div class="bottom-cta" id="bottom-cta">
+      <div class="bc-title">Esses custos podem ser eliminados.</div>
+      <div class="bc-sub">Conheça como a Versa transforma o abastecimento da sua frota em vantagem operacional — com zero deslocamento, controle total e histórico de zero incidentes.</div>
+      <a class="bc-link" href="https://versafuel.com.br" target="_blank">Quero conhecer a Versa →</a>
+    </div>
+
+    <span class="recalc-link" onclick="recalcular()">← Refazer o cálculo</span>
+
+  </div>
+
+  <div class="footer">
+    Estimativas baseadas em médias de mercado para frotas leves no Brasil.<br>
+    Salário médio motorista + encargos (Senior). Fraude: 10–15% do volume (fonte: Shell). Depreciação: média Movida/Localiza GTF.
+  </div>
+</div>
+
+<script>
+var currentMode = 1;
+
+function getUtmParams() {
+  const params = new URLSearchParams(window.location.search);
+
+  const utms = {
+    utm_source: params.get('utm_source') || '',
+    utm_medium: params.get('utm_medium') || '',
+    utm_campaign: params.get('utm_campaign') || '',
+    utm_term: params.get('utm_term') || '',
+    utm_content: params.get('utm_content') || ''
+  };
+
+  console.log('UTMs capturados:', utms);
+
+  return utms;
+}
+
+function enviarParaRD(nome, email, whatsapp, empresa) {
+  const utms = getUtmParams();
+
+  const payload = {
+    nome: nome,
+    email: email,
+    whatsapp: whatsapp || '',
+    empresa: empresa || '',
+    utm_source: utms.utm_source,
+    utm_medium: utms.utm_medium,
+    utm_campaign: utms.utm_campaign,
+    utm_term: utms.utm_term,
+    utm_content: utms.utm_content
+  };
+
+  console.log('Payload enviado para WordPress:', payload);
+
+  fetch('https://versafuel.com.br/wp-json/versa/v1/lead', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(async function(r) {
+    const text = await r.text();
+
+    console.log('WordPress status:', r.status);
+    console.log('WordPress resposta:', text);
+
+    if (!r.ok) {
+      throw new Error('Erro no envio: ' + r.status + ' - ' + text);
+    }
+  })
+  .catch(function(e) {
+    console.warn('Erro ao enviar lead:', e);
+  });
+}
+  
+function maskPhone(el) {
+  var v = el.value.replace(/\D/g, '').substring(0, 11);
+  if (v.length <= 2) { el.value = v.length ? '(' + v : ''; }
+  else if (v.length <= 6) { el.value = '(' + v.substring(0,2) + ') ' + v.substring(2); }
+  else if (v.length <= 10) { el.value = '(' + v.substring(0,2) + ') ' + v.substring(2,6) + '-' + v.substring(6); }
+  else { el.value = '(' + v.substring(0,2) + ') ' + v.substring(2,3) + ' ' + v.substring(3,7) + '-' + v.substring(7); }
+}
+var selectedVehicle = '';
+var vehicleKml = { passeio: 8.5, utilitario: 9.0, moto: 30.0, suv: 7.0 };
+var fuelPrice = { etanol: 4.15, gasolina: 6.40 };
+
+function setMode(m) {
+  currentMode = m;
+  document.querySelectorAll('.mode-btn').forEach(function(b, i) {
+    b.classList.toggle('active', i + 1 === m);
+  });
+  document.getElementById('pane-1').classList.toggle('active', m === 1);
+  document.getElementById('pane-2').classList.toggle('active', m === 2);
+  hideResults();
+}
+
+function selectVehicle(v) {
+  selectedVehicle = v;
+  document.querySelectorAll('.vehicle-opt').forEach(function(el) { el.classList.remove('selected'); });
+  document.getElementById('v-' + v).classList.add('selected');
+}
+
+function checkDiesel() {
+  var val = document.getElementById('m2-comb').value;
+  document.getElementById('diesel-warn').classList.toggle('show', val === 'diesel');
+  document.getElementById('calc-btn').disabled = val === 'diesel';
+}
+
+function fmt(n) {
+  return 'R$ ' + Math.round(n).toLocaleString('pt-BR');
+}
+
+function calcular() {
+  var frota, kmMes, kml, combustivel;
+
+  if (currentMode === 1) {
+    frota = parseFloat(document.getElementById('m1-frota').value);
+    kml = parseFloat(document.getElementById('m1-kml').value);
+    kmMes = parseFloat(document.getElementById('m1-km').value);
+    combustivel = 'etanol';
+  } else {
+    frota = parseFloat(document.getElementById('m2-frota').value);
+    kmMes = parseFloat(document.getElementById('m2-km').value);
+    combustivel = document.getElementById('m2-comb').value;
+    kml = vehicleKml[selectedVehicle] || 8.5;
+  }
+
+  // Validate lead fields
+  var lNome = document.getElementById('lead-nome').value.trim();
+  var lEmail = document.getElementById('lead-email').value.trim();
+  var lWa = document.getElementById('lead-whatsapp').value.trim();
+  if (!lNome || !lEmail || !lWa) { alert('Por favor, preencha seu nome, e-mail e WhatsApp antes de calcular.'); return; }
+  if (!/\S+@\S+\.\S+/.test(lEmail)) { alert('Informe um e-mail válido.'); return; }
+
+  if (!window.rdLeadEnviado) {
+  enviarParaRD(
+    lNome,
+    lEmail,
+    lWa,
+    ''
+  );
+  window.rdLeadEnviado = true;
+  }
+
+  if (!frota || !kmMes) { alert('Preencha todos os campos obrigatórios.'); return; }
+  if (currentMode === 1 && !kml) { alert('Informe o consumo médio em km/l.'); return; }
+  if (currentMode === 2 && (!combustivel || combustivel === 'diesel')) return;
+
+  var kmAno = kmMes * 12;
+  var preco = fuelPrice[combustivel] || fuelPrice['etanol'];
+
+  var salarioTotal = 3500 * 1.8;
+  var custoPorHora = salarioTotal / 176;
+  var custoPorViagem = custoPorHora * 0.5;
+  var litrosAno = kmAno / kml;
+  var tanque = 55 * 0.75;
+  var abastAno = litrosAno / tanque;
+
+  var custoMO = custoPorViagem * abastAno;
+  var kmDesvioAno = 3.5 * abastAno;
+  var custoComb = (kmDesvioAno / kml) * preco;
+  var custoManut = kmDesvioAno * 0.5;
+  var custoDeprec = kmDesvioAno * 0.246;
+  var custoFraude = litrosAno * 0.125 * preco;
+
+  var totalPV = custoMO + custoComb + custoManut + custoDeprec + custoFraude;
+  var totalFrota = totalPV * frota;
+  var economia = totalFrota * 0.77;
+
+  document.getElementById('r-total').textContent = fmt(totalFrota);
+  document.getElementById('r-frota-info').textContent = 'para uma frota de ' + Math.round(frota) + ' veículo' + (frota > 1 ? 's' : '');
+  document.getElementById('r-por-veiculo').textContent = fmt(totalPV);
+  document.getElementById('r-economia').textContent = fmt(economia);
+
+  var items = [
+    { id: 'l', val: custoMO * frota },
+    { id: 'f', val: custoComb * frota },
+    { id: 'm', val: custoManut * frota },
+    { id: 'd', val: custoDeprec * frota },
+    { id: 'fr', val: custoFraude * frota }
+  ];
+
+  items.forEach(function(it) {
+    var pct = totalFrota > 0 ? Math.round((it.val / totalFrota) * 100) : 0;
+    document.getElementById('r-' + it.id).textContent = fmt(it.val);
+    document.getElementById('p-' + it.id).textContent = pct + '%';
+    document.getElementById('bar-' + it.id).style.width = pct + '%';
+  });
+
+  document.getElementById('form-area').style.display = 'none';
+  document.querySelector('.mode-toggle').style.display = 'none';
+  document.getElementById('results').classList.add('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function unlockResults() {
+  var nome = document.getElementById('gate-nome').value.trim();
+  var email = document.getElementById('gate-email').value.trim();
+  var empresa = document.getElementById('gate-empresa').value.trim();
+  if (!nome || !email || !empresa) {
+    alert('Por favor, preencha todos os campos para ver o resultado completo.');
+    return;
+  }
+  if (!/\S+@\S+\.\S+/.test(email)) {
+    alert('Informe um e-mail válido.');
+    return;
+  }
+  document.getElementById('lead-gate').classList.add('hidden');
+  document.getElementById('locked-blur').classList.add('unlocked');
+  document.getElementById('bottom-cta').style.display = 'block';
+}
+
+function recalcular() {
+  document.getElementById('form-area').style.display = 'block';
+  document.querySelector('.mode-toggle').style.display = 'flex';
+  document.getElementById('results').classList.remove('show');
+  // lead fields kept — user already identified
+}
+
+function hideResults() {
+  document.getElementById('results').classList.remove('show');
+  document.getElementById('form-area').style.display = 'block';
+}
+</script>
+<script>
+function sendHeight() {
+    const height = document.documentElement.scrollHeight;
+    parent.postMessage({
+        type: 'vf-calc-height',
+        height: height
+    }, '*');
+}
+
+window.addEventListener('load', sendHeight);
+window.addEventListener('resize', sendHeight);
+
+const observer = new MutationObserver(() => {
+    sendHeight();
+});
+
+observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true
+});
+
+setInterval(sendHeight, 1000);
+</script>
+</body>
+</html>
