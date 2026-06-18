@@ -1015,6 +1015,8 @@ function getUtmParams() {
 }
 
 function enviarEventoGTM(eventName, eventParams) {
+  console.log('Evento enviado do iframe para o GTM:', eventName, eventParams);
+
   window.parent.postMessage({
     type: 'vf-gtm-event',
     event: eventName,
@@ -1056,14 +1058,14 @@ function enviarParaRD(nome, email, whatsapp, empresa) {
       throw new Error('Erro no envio: ' + r.status + ' - ' + text);
     }
 
-    enviarEventoGTM('calculadora_versa_b_lead_enviado', {
-  versao: 'b',
-  utm_source: payload.utm_source,
-  utm_medium: payload.utm_medium,
-  utm_campaign: payload.utm_campaign,
-  utm_term: payload.utm_term,
-  utm_content: payload.utm_content
-});
+   enviarEventoGTM('calculadora_versa_b_lead_enviado', {
+    versao: 'b',
+    utm_source: payload.utm_source,
+    utm_medium: payload.utm_medium,
+    utm_campaign: payload.utm_campaign,
+    utm_term: payload.utm_term,
+    utm_content: payload.utm_content
+    });
     
   })
   .catch(function(e) {
@@ -1169,19 +1171,18 @@ function calcular() {
   });
 
   document.getElementById('form-area').style.display = 'none';
-document.querySelector('.mode-toggle').style.display = 'none';
-document.getElementById('results').classList.add('show');
+  document.querySelector('.mode-toggle').style.display = 'none';
+  document.getElementById('results').classList.add('show');
 
-enviarEventoGTM('calculadora_versa_b_resultado_exibido', {
+  enviarEventoGTM('calculadora_versa_b_resultado_exibido', {
   versao: 'b',
   modo: currentMode === 1 ? 'simplificado' : 'detalhado',
   frota: frota,
   custo_oculto_anual: Math.round(totalFrota),
   economia_anual: Math.round(economia)
-});
+  });
 
-window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 
 function unlockResults() {
   var nome = document.getElementById('gate-nome').value.trim();
@@ -1217,12 +1218,12 @@ function enviarLeadResultado() {
 
   enviarEventoGTM('calculadora_versa_b_lead_click', {
   versao: 'b'
-});
+  });
 
-if (!window.rdLeadEnviado) {
+  if (!window.rdLeadEnviado) {
   enviarParaRD(lNome, lEmail, lWa, '');
   window.rdLeadEnviado = true;
-}
+  }
 
   var btn = document.getElementById('lead-submit-btn');
   btn.textContent = 'Relatório solicitado ✓';
