@@ -972,6 +972,14 @@ function getUtmParams() {
   return utms;
 }
 
+function enviarEventoGTM(eventName, eventParams) {
+  window.parent.postMessage({
+    type: 'vf-gtm-event',
+    event: eventName,
+    params: eventParams || {}
+  }, '*');
+}
+
 function enviarParaRD(nome, email, whatsapp, empresa) {
   const utms = getUtmParams();
 
@@ -999,12 +1007,21 @@ function enviarParaRD(nome, email, whatsapp, empresa) {
   .then(async function(r) {
     const text = await r.text();
 
-    console.log('WordPress status:', r.status);
-    console.log('WordPress resposta:', text);
+console.log('WordPress status:', r.status);
+console.log('WordPress resposta:', text);
 
-    if (!r.ok) {
-      throw new Error('Erro no envio: ' + r.status + ' - ' + text);
-    }
+if (!r.ok) {
+  throw new Error('Erro no envio: ' + r.status + ' - ' + text);
+}
+
+enviarEventoGTM('calculadora_versa_lead_enviado', {
+  email: email,
+  utm_source: payload.utm_source,
+  utm_medium: payload.utm_medium,
+  utm_campaign: payload.utm_campaign,
+  utm_term: payload.utm_term,
+  utm_content: payload.utm_content
+});
   })
   .catch(function(e) {
     console.warn('Erro ao enviar lead:', e);
@@ -1070,6 +1087,10 @@ function calcular() {
   if (!lNome || !lEmail || !lWa) { alert('Por favor, preencha seu nome, e-mail e WhatsApp antes de calcular.'); return; }
   if (!/\S+@\S+\.\S+/.test(lEmail)) { alert('Informe um e-mail válido.'); return; }
 
+  enviarEventoGTM('calculadora_versa_calcular_click', {
+  modo: currentMode === 1 ? 'simplificado' : 'detalhado'
+  });
+  
   if (!window.rdLeadEnviado) {
   enviarParaRD(
     lNome,
@@ -1125,6 +1146,13 @@ function calcular() {
     document.getElementById('bar-' + it.id).style.width = pct + '%';
   });
 
+  enviarEventoGTM('calculadora_versa_resultado_exibido', {
+  modo: currentMode === 1 ? 'simplificado' : 'detalhado',
+  frota: frota,
+  custo_oculto_anual: Math.round(totalFrota),
+  economia_anual: Math.round(economia)
+});
+  
   document.getElementById('form-area').style.display = 'none';
   document.querySelector('.mode-toggle').style.display = 'none';
   document.getElementById('results').classList.add('show');
