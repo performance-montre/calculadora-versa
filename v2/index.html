@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -9,755 +10,203 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
-  --bg: #2a2a2a;
-  --bg-card: #333333;
-  --bg-dark: #1e1e1e;
-  --green: #00e5a0;
-  --green-dark: #00b87d;
-  --white: #ffffff;
-  --gray-light: rgba(255,255,255,0.7);
-  --gray-muted: rgba(255,255,255,0.45);
-  --border: rgba(255,255,255,0.1);
-  --radius: 24px;
-  --radius-sm: 12px;
-  --font-display: 'Montserrat', sans-serif;
-  --font-body: 'Inter', sans-serif;
-}
+ {--bg: #2a2a2a;--bg-card: #333333;--bg-dark: #1e1e1e;--green: #00e5a0;--green-dark: #00b87d;--white: #ffffff;--gray-light: rgba(255,255,255,0.7);--gray-muted: rgba(255,255,255,0.45);--border: rgba(255,255,255,0.1);--radius: 24px;--radius-sm: 12px;--font-display: 'Montserrat', sans-serif;--font-body: 'Inter', sans-serif;}
 
-html, body {
-  background: var(--bg);
-  color: var(--white);
-  font-family: var(--font-body);
-  min-height: 100vh;
-}
+html, body {background: var(--bg);color: var(--white);font-family: var(--font-body);min-height: 100vh;}
 
-body {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 0;
-}
+body {display: flex;align-items: flex-start;justify-content: center;padding: 0;}
 
-.page {
-  width: 100%;
-  max-width: 760px;
-  padding: 56px 32px 64px;
-}
+.page {width: 100%;max-width: 760px;padding: 56px 32px 64px;}
 
-/* HEADER */
-.header {
-  text-align: center;
-  margin-bottom: 44px;
-}
+/* HEADER */.header {text-align: center;margin-bottom: 44px;}
 
-.logo-wrap {
-  margin-bottom: 32px;
-  display: flex;
-  justify-content: center;
-}
+.logo-wrap {margin-bottom: 32px;display: flex;justify-content: center;}
 
 
 
-.eyebrow {
-  font-family: var(--font-display);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 16px;
-}
+.eyebrow {font-family: var(--font-display);font-size: 11px;font-weight: 700;letter-spacing: 3px;text-transform: uppercase;color: var(--green);margin-bottom: 16px;}
 
-.headline {
-  font-family: var(--font-display);
-  font-size: 36px;
-  font-weight: 900;
-  line-height: 1.15;
-  color: var(--white);
-  margin-bottom: 16px;
-}
+.headline {font-family: var(--font-display);font-size: 36px;font-weight: 900;line-height: 1.15;color: var(--white);margin-bottom: 16px;}
 
-.subhead {
-  font-size: 16px;
-  color: var(--gray-light);
-  line-height: 1.65;
-  max-width: 520px;
-  margin: 0 auto;
-}
+.subhead {font-size: 16px;color: var(--gray-light);line-height: 1.65;max-width: 520px;margin: 0 auto;}
 
-/* MODE TOGGLE */
-.mode-toggle {
-  display: flex;
-  justify-content: center;
-  gap: 0;
-  margin-bottom: 36px;
-}
+/* MODE TOGGLE */.mode-toggle {display: flex;justify-content: center;gap: 0;margin-bottom: 36px;}
 
-.mode-inner {
-  display: flex;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid var(--border);
-  border-radius: 50px;
-  padding: 5px;
-  gap: 4px;
-}
+.mode-inner {display: flex;background: rgba(255,255,255,0.07);border: 1px solid var(--border);border-radius: 50px;padding: 5px;gap: 4px;}
 
-.mode-btn {
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.3px;
-  padding: 10px 24px;
-  border-radius: 50px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.22s;
-  color: var(--gray-muted);
-  background: transparent;
-}
+.mode-btn {font-family: var(--font-display);font-size: 13px;font-weight: 700;letter-spacing: 0.3px;padding: 10px 24px;border-radius: 50px;border: none;cursor: pointer;transition: all 0.22s;color: var(--gray-muted);background: transparent;}
 
-.mode-btn.active {
-  background: var(--green);
-  color: #1a1a1a;
-}
+.mode-btn.active {background: var(--green);color: #1a1a1a;}
 
-.mode-btn:hover:not(.active) {
-  color: var(--white);
-}
+.mode-btn:hover(.active) {color: var(--white);}
 
-/* FORM CARD */
-.form-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 36px 36px 32px;
-  margin-bottom: 20px;
-}
+/* FORM CARD */.form-card {background: var(--bg-card);border: 1px solid var(--border);border-radius: var(--radius);padding: 36px 36px 32px;margin-bottom: 20px;}
 
-.section-label {
-  font-family: var(--font-display);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--gray-muted);
-  margin-bottom: 22px;
-}
+.section-label {font-family: var(--font-display);font-size: 11px;font-weight: 700;letter-spacing: 2.5px;text-transform: uppercase;color: var(--gray-muted);margin-bottom: 22px;}
 
-.fields-grid {
-  display: grid;
-  gap: 18px;
-}
+.fields-grid {display: grid;gap: 18px;}
 
 .fields-2 { grid-template-columns: 1fr 1fr; }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+.field {display: flex;flex-direction: column;gap: 8px;}
 
-.field label {
-  font-size: 13px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.6);
-  letter-spacing: 0.1px;
-}
+.field label {font-size: 13px;font-weight: 600;color: rgba(255,255,255,0.6);letter-spacing: 0.1px;}
 
-.input-wrap {
-  position: relative;
-}
+.input-wrap {position: relative;}
 
-.input-wrap input,
-.input-wrap select {
-  width: 100%;
-  background: rgba(255,255,255,0.06);
-  border: 1.5px solid rgba(255,255,255,0.12);
-  border-radius: var(--radius-sm);
-  padding: 13px 52px 13px 16px;
-  font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--white);
-  outline: none;
-  transition: border-color 0.18s, background 0.18s;
-  -moz-appearance: textfield;
-}
+.input-wrap input,.input-wrap select {width: 100%;background: rgba(255,255,255,0.06);border: 1.5px solid rgba(255,255,255,0.12);border-radius: var(--radius-sm);padding: 13px 52px 13px 16px;font-family: var(--font-body);font-size: 15px;font-weight: 600;color: var(--white);outline: none;transition: border-color 0.18s, background 0.18s;-moz-appearance: textfield;}
 
-.input-wrap input::-webkit-inner-spin-button,
-.input-wrap input::-webkit-outer-spin-button { -webkit-appearance: none; }
+.input-wrap input::-webkit-inner-spin-button,.input-wrap input::-webkit-outer-spin-button { -webkit-appearance: none; }
 
-.input-wrap input:focus,
-.input-wrap select:focus {
-  border-color: var(--green);
-  background: rgba(0,229,160,0.06);
-}
+.input-wrap input,.input-wrap select {border-color: var(--green);background: rgba(0,229,160,0.06);}
 
 .input-wrap input::placeholder { color: rgba(255,255,255,0.2); font-weight: 400; }
 
-.input-suffix {
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 12px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.3);
-  pointer-events: none;
-}
+.input-suffix {position: absolute;right: 14px;top: 50%;transform: translateY(-50%);font-size: 12px;font-weight: 600;color: rgba(255,255,255,0.3);pointer-events: none;}
 
-.input-wrap select {
-  cursor: pointer;
-  appearance: none;
-  padding-right: 40px;
-}
+.input-wrap select {cursor: pointer;appearance: none;padding-right: 40px;}
 
-.select-arrow {
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  color: rgba(255,255,255,0.35);
-  font-size: 12px;
-}
+.select-arrow {position: absolute;right: 14px;top: 50%;transform: translateY(-50%);pointer-events: none;color: rgba(255,255,255,0.35);font-size: 12px;}
 
 .select-arrow::after { content: '▾'; }
 
-/* VEHICLE TYPES */
-.vehicle-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 4px;
-}
+/* VEHICLE TYPES */.vehicle-grid {display: grid;grid-template-columns: 1fr 1fr;gap: 10px;margin-top: 4px;}
 
-.vehicle-opt {
-  padding: 14px 12px;
-  background: rgba(255,255,255,0.05);
-  border: 1.5px solid rgba(255,255,255,0.1);
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: all 0.18s;
-  font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.5);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
+.vehicle-opt {padding: 14px 12px;background: rgba(255,255,255,0.05);border: 1.5px solid rgba(255,255,255,0.1);border-radius: var(--radius-sm);cursor: pointer;transition: all 0.18s;font-family: var(--font-display);font-size: 12px;font-weight: 700;color: rgba(255,255,255,0.5);text-align: center;display: flex;flex-direction: column;align-items: center;gap: 6px;}
 
-.vehicle-opt:hover {
-  border-color: rgba(0,229,160,0.4);
-  color: rgba(255,255,255,0.85);
-}
+.vehicle-opt {border-color: rgba(0,229,160,0.4);color: rgba(255,255,255,0.85);}
 
-.vehicle-opt.selected {
-  border-color: var(--green);
-  background: rgba(0,229,160,0.1);
-  color: var(--green);
-}
+.vehicle-opt.selected {border-color: var(--green);background: rgba(0,229,160,0.1);color: var(--green);}
 
 .vehicle-icon { font-size: 22px; }
 
-/* DIESEL WARNING */
-.diesel-warning {
-  display: none;
-  background: rgba(255,80,80,0.1);
-  border: 1px solid rgba(255,80,80,0.35);
-  border-radius: var(--radius-sm);
-  padding: 14px 18px;
-  font-size: 13px;
-  color: #ff9090;
-  line-height: 1.55;
-  gap: 10px;
-  align-items: flex-start;
-}
+/* DIESEL WARNING */.diesel-warning {display: none;background: rgba(255,80,80,0.1);border: 1px solid rgba(255,80,80,0.35);border-radius: var(--radius-sm);padding: 14px 18px;font-size: 13px;color: #ff9090;line-height: 1.55;gap: 10px;align-items: flex-start;}
 
 .diesel-warning.show { display: flex; }
 
 .diesel-warning strong { color: #ffaaaa; display: block; margin-bottom: 3px; font-size: 13px; }
 
-/* CTA BUTTON */
-.cta-btn {
-  width: 100%;
-  background: var(--green);
-  color: #1a1a1a;
-  border: none;
-  border-radius: var(--radius-sm);
-  padding: 17px;
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 0.3px;
-  cursor: pointer;
-  margin-top: 28px;
-  transition: opacity 0.18s, transform 0.1s;
-}
+/* CTA BUTTON */.cta-btn {width: 100%;background: var(--green);color: #1a1a1a;border: none;border-radius: var(--radius-sm);padding: 17px;font-family: var(--font-display);font-size: 15px;font-weight: 800;letter-spacing: 0.3px;cursor: pointer;margin-top: 28px;transition: opacity 0.18s, transform 0.1s;}
 
-.cta-btn:hover { opacity: 0.88; }
-.cta-btn:active { transform: scale(0.99); }
-.cta-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.cta-btn { opacity: 0.88; }.cta-btn { transform: scale(0.99); }.cta-btn { opacity: 0.3; cursor: not-allowed; }
 
-/* RESULTS */
-.results { display: none; }
-.results.show { display: block; }
+/* RESULTS */.results { display: none; }.results.show { display: block; }
 
-/* TOTAL BLOCK — green card like screenshot */
-.result-total-card {
-  background: var(--green);
-  border-radius: var(--radius);
-  padding: 40px 36px;
-  text-align: center;
-  margin-bottom: 20px;
-  position: relative;
-  overflow: hidden;
-}
+/* TOTAL BLOCK — green card like screenshot */.result-total-card {background: var(--green);border-radius: var(--radius);padding: 40px 36px;text-align: center;margin-bottom: 20px;position: relative;overflow: hidden;}
 
-.result-total-card::before {
-  content: '';
-  position: absolute;
-  top: -60px; right: -60px;
-  width: 200px; height: 200px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 50%;
-}
+.result-total-card::before {content: '';position: absolute;top: -60px; right: -60px;width: 200px; height: 200px;background: rgba(255,255,255,0.06);border-radius: 50%;}
 
-.result-total-card::after {
-  content: '';
-  position: absolute;
-  bottom: -40px; left: -40px;
-  width: 160px; height: 160px;
-  background: rgba(0,0,0,0.06);
-  border-radius: 50%;
-}
+.result-total-card::after {content: '';position: absolute;bottom: -40px; left: -40px;width: 160px; height: 160px;background: rgba(0,0,0,0.06);border-radius: 50%;}
 
-.r-eyebrow {
-  font-family: var(--font-display);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: rgba(0,0,0,0.55);
-  margin-bottom: 10px;
-  position: relative; z-index: 1;
-}
+.r-eyebrow {font-family: var(--font-display);font-size: 11px;font-weight: 800;letter-spacing: 2.5px;text-transform: uppercase;color: rgba(0,0,0,0.55);margin-bottom: 10px;position: relative; z-index: 1;}
 
-.r-total-value {
-  font-family: var(--font-display);
-  font-size: 56px;
-  font-weight: 900;
-  color: #1a1a1a;
-  line-height: 1;
-  margin-bottom: 6px;
-  position: relative; z-index: 1;
-}
+.r-total-value {font-family: var(--font-display);font-size: 56px;font-weight: 900;color: #1a1a1a;line-height: 1;margin-bottom: 6px;position: relative; z-index: 1;}
 
-.r-total-sub {
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 700;
-  color: rgba(0,0,0,0.5);
-  position: relative; z-index: 1;
-}
+.r-total-sub {font-family: var(--font-display);font-size: 13px;font-weight: 700;color: rgba(0,0,0,0.5);position: relative; z-index: 1;}
 
-/* PER VEHICLE ROW */
-.pv-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 20px;
-}
+/* PER VEHICLE ROW */.pv-row {display: grid;grid-template-columns: 1fr 1fr;gap: 12px;margin-bottom: 20px;}
 
-.pv-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 22px 20px;
-  text-align: center;
-}
+.pv-card {background: var(--bg-card);border: 1px solid var(--border);border-radius: var(--radius-sm);padding: 22px 20px;text-align: center;}
 
-.pv-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--gray-muted);
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-}
+.pv-label {font-size: 12px;font-weight: 600;color: var(--gray-muted);margin-bottom: 8px;text-transform: uppercase;letter-spacing: 0.8px;}
 
-.pv-value {
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--white);
-}
+.pv-value {font-family: var(--font-display);font-size: 24px;font-weight: 800;color: var(--white);}
 
 .pv-card.highlight .pv-value { color: var(--green); }
 
-/* BREAKDOWN CARD */
-.breakdown-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin-bottom: 20px;
-}
+/* BREAKDOWN CARD */.breakdown-card {background: var(--bg-card);border: 1px solid var(--border);border-radius: var(--radius);overflow: hidden;margin-bottom: 20px;}
 
-.breakdown-header {
-  padding: 18px 24px 14px;
-  font-family: var(--font-display);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--gray-muted);
-  border-bottom: 1px solid var(--border);
-}
+.breakdown-header {padding: 18px 24px 14px;font-family: var(--font-display);font-size: 11px;font-weight: 800;letter-spacing: 2.5px;text-transform: uppercase;color: var(--gray-muted);border-bottom: 1px solid var(--border);}
 
-.breakdown-row {
-  display: flex;
-  align-items: center;
-  padding: 15px 24px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  gap: 14px;
-}
+.breakdown-row {display: flex;align-items: center;padding: 15px 24px;border-bottom: 1px solid rgba(255,255,255,0.05);gap: 14px;}
 
-.breakdown-row:last-child { border-bottom: none; }
+.breakdown-row { border-bottom: none; }
 
-.bd-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
+.bd-dot {width: 9px;height: 9px;border-radius: 50%;flex-shrink: 0;}
 
-.bd-name {
-  font-size: 14px;
-  color: rgba(255,255,255,0.65);
-  flex: 1;
-}
+.bd-name {font-size: 14px;color: rgba(255,255,255,0.65);flex: 1;}
 
-.bd-bar-wrap {
-  height: 4px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 2px;
-  flex: 0 0 72px;
-}
+.bd-bar-wrap {height: 4px;background: rgba(255,255,255,0.08);border-radius: 2px;flex: 0 0 72px;}
 
-.bd-bar {
-  height: 100%;
-  border-radius: 2px;
-  transition: width 0.7s cubic-bezier(.4,0,.2,1);
-}
+.bd-bar {height: 100%;border-radius: 2px;transition: width 0.7s cubic-bezier(.4,0,.2,1);}
 
-.bd-val {
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--white);
-  min-width: 90px;
-  text-align: right;
-}
+.bd-val {font-family: var(--font-display);font-size: 14px;font-weight: 700;color: var(--white);min-width: 90px;text-align: right;}
 
-.bd-pct {
-  font-size: 12px;
-  color: var(--gray-muted);
-  min-width: 34px;
-  text-align: right;
-}
+.bd-pct {font-size: 12px;color: var(--gray-muted);min-width: 34px;text-align: right;}
 
-/* BOTTOM CTA */
-.bottom-cta {
-  background: var(--bg-dark);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 32px 36px;
-  text-align: center;
-  margin-bottom: 20px;
-}
+/* BOTTOM CTA */.bottom-cta {background: var(--bg-dark);border: 1px solid var(--border);border-radius: var(--radius);padding: 32px 36px;text-align: center;margin-bottom: 20px;}
 
-.bc-title {
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--white);
-  margin-bottom: 10px;
-}
+.bc-title {font-family: var(--font-display);font-size: 20px;font-weight: 800;color: var(--white);margin-bottom: 10px;}
 
-.bc-sub {
-  font-size: 14px;
-  color: var(--gray-muted);
-  line-height: 1.65;
-  margin-bottom: 22px;
-}
+.bc-sub {font-size: 14px;color: var(--gray-muted);line-height: 1.65;margin-bottom: 22px;}
 
-.bc-link {
-  display: inline-block;
-  padding: 14px 36px;
-  background: transparent;
-  border: 2px solid var(--green);
-  border-radius: 50px;
-  color: var(--green);
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 800;
-  text-decoration: none;
-  letter-spacing: 0.3px;
-  transition: background 0.2s, color 0.2s;
-}
+.bc-link {display: inline-block;padding: 14px 36px;background: transparent;border: 2px solid var(--green);border-radius: 50px;color: var(--green);font-family: var(--font-display);font-size: 14px;font-weight: 800;text-decoration: none;letter-spacing: 0.3px;transition: background 0.2s, color 0.2s;}
 
-.bc-link:hover {
-  background: var(--green);
-  color: #1a1a1a;
-}
+.bc-link {background: var(--green);color: #1a1a1a;}
 
-/* FORM BELOW RESULTS — A/B VERSION */
-.result-lead-form {
-  text-align: left;
-  padding: 34px 36px 32px;
-}
+/* FORM BELOW RESULTS — A/B VERSION */.result-lead-form {text-align: left;padding: 34px 36px 32px;}
 
-.result-lead-form .bc-title,
-.result-lead-form .bc-sub {
-  text-align: center;
-}
+.result-lead-form .bc-title,.result-lead-form .bc-sub {text-align: center;}
 
-.result-lead-form .bc-sub {
-  max-width: 560px;
-  margin-left: auto;
-  margin-right: auto;
-}
+.result-lead-form .bc-sub {max-width: 560px;margin-left: auto;margin-right: auto;}
 
-.lead-result-fields {
-  max-width: 520px;
-  margin: 0 auto;
-  gap: 14px;
-}
+.lead-result-fields {max-width: 520px;margin: 0 auto;gap: 14px;}
 
-.lead-submit-btn {
-  max-width: 520px;
-  display: block;
-  margin: 24px auto 0;
-}
+.lead-submit-btn {max-width: 520px;display: block;margin: 24px auto 0;}
 
-.lead-success {
-  display: none;
-  max-width: 520px;
-  margin: 14px auto 0;
-  padding: 12px 14px;
-  border: 1px solid rgba(0,229,160,0.28);
-  border-radius: var(--radius-sm);
-  background: rgba(0,229,160,0.08);
-  color: var(--green);
-  font-size: 13px;
-  font-weight: 600;
-  text-align: center;
-}
+.lead-success {display: none;max-width: 520px;margin: 14px auto 0;padding: 12px 14px;border: 1px solid rgba(0,229,160,0.28);border-radius: var(--radius-sm);background: rgba(0,229,160,0.08);color: var(--green);font-size: 13px;font-weight: 600;text-align: center;}
 
-.recalc-link {
-  text-align: center;
-  font-size: 13px;
-  color: var(--gray-muted);
-  cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  padding: 4px 0 8px;
-  display: block;
-}
+.recalc-link {text-align: center;font-size: 13px;color: var(--gray-muted);cursor: pointer;text-decoration: underline;text-underline-offset: 3px;padding: 4px 0 8px;display: block;}
 
-.recalc-link:hover { color: var(--white); }
+.recalc-link { color: var(--white); }
 
-/* FOOTER */
-.footer {
-  text-align: center;
-  padding: 28px 0 0;
-  font-size: 11px;
-  color: rgba(255,255,255,0.2);
-  line-height: 1.7;
-  border-top: 1px solid var(--border);
-  margin-top: 16px;
-}
+/* FOOTER */.footer {text-align: center;padding: 28px 0 0;font-size: 11px;color: rgba(255,255,255,0.2);line-height: 1.7;border-top: 1px solid var(--border);margin-top: 16px;}
 
-/* MODES */
-.mode-pane { display: none; }
-.mode-pane.active { display: block; }
+/* MODES */.mode-pane { display: none; }.mode-pane.active { display: block; }
 
-@media (max-width: 600px) {
-  .page { padding: 36px 16px 48px; }
-  .headline { font-size: 26px; }
-  .r-total-value { font-size: 40px; }
-  .fields-2 { grid-template-columns: 1fr; }
-  .pv-row { grid-template-columns: 1fr; }
-  .form-card { padding: 24px 20px; }
-}
+@media (max-width: 600px) {.page { padding: 36px 16px 48px; }.headline { font-size: 26px; }.r-total-value { font-size: 40px; }.fields-2 { grid-template-columns: 1fr; }.pv-row { grid-template-columns: 1fr; }.form-card { padding: 24px 20px; }}
 
-/* LEAD GATE */
-.locked-wrap {
-  position: relative;
-  border-radius: var(--radius);
-  overflow: hidden;
-}
+/* LEAD GATE */.locked-wrap {position: relative;border-radius: var(--radius);overflow: hidden;}
 
-.locked-blur {
-  filter: blur(6px);
-  user-select: none;
-  pointer-events: none;
-  opacity: 0.6;
-  transition: filter 0.5s, opacity 0.5s;
-}
+.locked-blur {filter: blur(6px);user-select: none;pointer-events: none;opacity: 0.6;transition: filter 0.5s, opacity 0.5s;}
 
-.locked-blur.unlocked {
-  filter: none;
-  opacity: 1;
-  pointer-events: auto;
-  user-select: auto;
-}
+.locked-blur.unlocked {filter: none;opacity: 1;pointer-events: auto;user-select: auto;}
 
-.lead-gate {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: rgba(26,26,26,0.82);
-  backdrop-filter: blur(2px);
-  border-radius: var(--radius);
-  border: 1px solid rgba(0,229,160,0.2);
-  padding: 36px 32px;
-  text-align: center;
-  gap: 0;
-  z-index: 10;
-}
+.lead-gate {position: absolute;inset: 0;display: flex;flex-direction: column;align-items: center;justify-content: center;background: rgba(26,26,26,0.82);backdrop-filter: blur(2px);border-radius: var(--radius);border: 1px solid rgba(0,229,160,0.2);padding: 36px 32px;text-align: center;gap: 0;z-index: 10;}
 
 .lead-gate.hidden { display: none; }
 
-.gate-icon {
-  font-size: 28px;
-  margin-bottom: 12px;
-}
+.gate-icon {font-size: 28px;margin-bottom: 12px;}
 
-.gate-title {
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--white);
-  margin-bottom: 6px;
-  line-height: 1.3;
-}
+.gate-title {font-family: var(--font-display);font-size: 18px;font-weight: 800;color: var(--white);margin-bottom: 6px;line-height: 1.3;}
 
-.gate-sub {
-  font-size: 13px;
-  color: var(--gray-muted);
-  line-height: 1.6;
-  max-width: 320px;
-  margin-bottom: 22px;
-}
+.gate-sub {font-size: 13px;color: var(--gray-muted);line-height: 1.6;max-width: 320px;margin-bottom: 22px;}
 
-.gate-fields {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  max-width: 360px;
-  margin-bottom: 14px;
-}
+.gate-fields {display: flex;flex-direction: column;gap: 10px;width: 100%;max-width: 360px;margin-bottom: 14px;}
 
-.gate-input {
-  width: 100%;
-  background: rgba(255,255,255,0.08);
-  border: 1.5px solid rgba(255,255,255,0.15);
-  border-radius: var(--radius-sm);
-  padding: 13px 16px;
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--white);
-  outline: none;
-  transition: border-color 0.18s;
-}
+.gate-input {width: 100%;background: rgba(255,255,255,0.08);border: 1.5px solid rgba(255,255,255,0.15);border-radius: var(--radius-sm);padding: 13px 16px;font-family: var(--font-body);font-size: 14px;font-weight: 500;color: var(--white);outline: none;transition: border-color 0.18s;}
 
-.gate-input:focus { border-color: var(--green); }
-.gate-input::placeholder { color: rgba(255,255,255,0.25); }
+.gate-input { border-color: var(--green); }.gate-input::placeholder { color: rgba(255,255,255,0.25); }
 
-.gate-btn {
-  width: 100%;
-  max-width: 360px;
-  background: var(--green);
-  color: #1a1a1a;
-  border: none;
-  border-radius: var(--radius-sm);
-  padding: 14px;
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 0.3px;
-  cursor: pointer;
-  transition: opacity 0.18s;
-}
+.gate-btn {width: 100%;max-width: 360px;background: var(--green);color: #1a1a1a;border: none;border-radius: var(--radius-sm);padding: 14px;font-family: var(--font-display);font-size: 14px;font-weight: 800;letter-spacing: 0.3px;cursor: pointer;transition: opacity 0.18s;}
 
-.gate-btn:hover { opacity: 0.88; }
+.gate-btn { opacity: 0.88; }
 
-.gate-note {
-  font-size: 11px;
-  color: rgba(255,255,255,0.2);
-  margin-top: 10px;
-}
+.gate-note {font-size: 11px;color: rgba(255,255,255,0.2);margin-top: 10px;}
 
+/* LEAD UPFRONT */.lead-upfront {background: rgba(0,229,160,0.06);border: 1.5px solid rgba(0,229,160,0.25);border-radius: var(--radius-sm);padding: 20px 20px 4px;margin-bottom: 24px;}
 
-/* LEAD UPFRONT */
-.lead-upfront {
-  background: rgba(0,229,160,0.06);
-  border: 1.5px solid rgba(0,229,160,0.25);
-  border-radius: var(--radius-sm);
-  padding: 20px 20px 4px;
-  margin-bottom: 24px;
-}
+.lead-upfront-label {font-family: var(--font-display);font-size: 11px;font-weight: 700;letter-spacing: 2px;text-transform: uppercase;color: var(--green);margin-bottom: 14px;display: flex;align-items: center;gap: 7px;}
 
-.lead-upfront-label {
-  font-family: var(--font-display);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 14px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
+.lead-upfront .fields-grid {margin-bottom: 0;}
 
-.lead-upfront .fields-grid {
-  margin-bottom: 0;
-}
+.lead-upfront .field {margin-bottom: 16px;}
 
-.lead-upfront .field {
-  margin-bottom: 16px;
-}
+/* Select - ajuste visual do dropdown */.input-wrap select {background-color: #333333 !important;color: #ffffff !important;-webkit-text-fill-color: #ffffff !important;}
 
- /* Select - ajuste visual do dropdown */
-.input-wrap select {
-  background-color: #333333 !important;
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-}
+.input-wrap select option {background: #333333 !important;color: #ffffff !important;}
 
-.input-wrap select option {
-  background: #333333 !important;
-  color: #ffffff !important;
-}
-
-.input-wrap select option:hover,
-.input-wrap select option:focus,
-.input-wrap select option:checked {
-  background: #00e5a0 !important;
-  color: #1a1a1a !important;
-}
+.input-wrap select option,.input-wrap select option,.input-wrap select option {background: #00e5a0 !important;color: #1a1a1a !important;}
 
 </style>
 </head>
@@ -765,6 +214,7 @@ body {
 <div class="page">
 
   <!-- HEADER -->
+
   <div class="header">
     <div class="logo-wrap">
       <svg viewBox="0 0 768 432" xmlns="http://www.w3.org/2000/svg" style="height:100px;width:auto;display:block;margin:0 auto;">
@@ -785,6 +235,7 @@ body {
   </div>
 
   <!-- MODE TOGGLE -->
+
   <div class="mode-toggle">
     <div class="mode-inner">
       <button class="mode-btn active" onclick="setMode(1)">Simplificado</button>
@@ -793,199 +244,202 @@ body {
   </div>
 
   <!-- FORM -->
+
   <div class="form-card" id="form-area">
     <div class="section-label">Dados da sua frota</div>
 
-    <!-- MODE 1 -->
-    <div class="mode-pane active" id="pane-1">
-      <div class="fields-grid">
-        <div class="field">
-          <label>Tamanho da frota</label>
-          <div class="input-wrap">
-            <input type="number" id="m1-frota" placeholder="Ex: 10" min="1">
-            <span class="input-suffix">veículos</span>
-          </div>
+<!-- MODE 1 -->
+<div class="mode-pane active" id="pane-1">
+  <div class="fields-grid">
+    <div class="field">
+      <label>Tamanho da frota</label>
+      <div class="input-wrap">
+        <input type="number" id="m1-frota" placeholder="Ex: 10" min="1">
+        <span class="input-suffix">veículos</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>Consumo médio (km/l)</label>
+      <div class="input-wrap">
+        <input type="number" id="m1-kml" placeholder="Ex: 8" min="1" step="0.1">
+        <span class="input-suffix">km/l</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>Km's por veículo / mês</label>
+      <div class="input-wrap">
+        <input type="number" id="m1-km" placeholder="Ex: 3.300" min="1">
+        <span class="input-suffix">km/mês</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODE 2 -->
+<div class="mode-pane" id="pane-2">
+  <div class="fields-grid">
+    <div class="fields-grid fields-2">
+      <div class="field">
+        <label>Tamanho da frota</label>
+        <div class="input-wrap">
+          <input type="number" id="m2-frota" placeholder="Ex: 10" min="1">
+          <span class="input-suffix">veículos</span>
         </div>
-        <div class="field">
-          <label>Consumo médio (km/l)</label>
-          <div class="input-wrap">
-            <input type="number" id="m1-kml" placeholder="Ex: 8" min="1" step="0.1">
-            <span class="input-suffix">km/l</span>
-          </div>
-        </div>
-        <div class="field">
-          <label>Km's por veículo / mês</label>
-          <div class="input-wrap">
-            <input type="number" id="m1-km" placeholder="Ex: 3.300" min="1">
-            <span class="input-suffix">km/mês</span>
-          </div>
+      </div>
+      <div class="field">
+        <label>Km's por veículo / mês</label>
+        <div class="input-wrap">
+          <input type="number" id="m2-km" placeholder="Ex: 3.300" min="1">
+          <span class="input-suffix">km/mês</span>
         </div>
       </div>
     </div>
 
-    <!-- MODE 2 -->
-    <div class="mode-pane" id="pane-2">
-      <div class="fields-grid">
-        <div class="fields-grid fields-2">
-          <div class="field">
-            <label>Tamanho da frota</label>
-            <div class="input-wrap">
-              <input type="number" id="m2-frota" placeholder="Ex: 10" min="1">
-              <span class="input-suffix">veículos</span>
-            </div>
-          </div>
-          <div class="field">
-            <label>Km's por veículo / mês</label>
-            <div class="input-wrap">
-              <input type="number" id="m2-km" placeholder="Ex: 3.300" min="1">
-              <span class="input-suffix">km/mês</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="field">
-          <label>Combustível utilizado</label>
-          <div class="input-wrap">
-            <select id="m2-comb" onchange="checkDiesel()">
-              <option value="">Selecione o combustível</option>
-              <option value="etanol">Etanol</option>
-              <option value="gasolina">Gasolina</option>
-              <option value="diesel">Diesel</option>
-            </select>
-            <span class="select-arrow"></span>
-          </div>
-        </div>
-
-        <div class="diesel-warning" id="diesel-warn">
-          <div>⚠</div>
-          <div>
-            <strong>Combustível não atendido</strong>
-            A Versa Fuel atua exclusivamente com frotas movidas a gasolina e etanol. Para frotas a diesel, entre em contato para conhecer outras soluções.
-          </div>
-        </div>
-
-        <div class="field">
-          <label>Tipo de veículo</label>
-          <div class="vehicle-grid">
-            <div class="vehicle-opt" onclick="selectVehicle('passeio')" id="v-passeio">
-              <span class="vehicle-icon">🚗</span>
-              Carro de passeio
-            </div>
-            <div class="vehicle-opt" onclick="selectVehicle('utilitario')" id="v-utilitario">
-              <span class="vehicle-icon">🚐</span>
-              Utilitário leve
-            </div>
-            <div class="vehicle-opt" onclick="selectVehicle('moto')" id="v-moto">
-              <span class="vehicle-icon">🏍</span>
-              Moto
-            </div>
-            <div class="vehicle-opt" onclick="selectVehicle('suv')" id="v-suv">
-              <span class="vehicle-icon">🚙</span>
-              SUV
-            </div>
-          </div>
-        </div>
+    <div class="field">
+      <label>Combustível utilizado</label>
+      <div class="input-wrap">
+        <select id="m2-comb" onchange="checkDiesel()">
+          <option value="">Selecione o combustível</option>
+          <option value="etanol">Etanol</option>
+          <option value="gasolina">Gasolina</option>
+          <option value="diesel">Diesel</option>
+        </select>
+        <span class="select-arrow"></span>
       </div>
     </div>
 
-    <button class="cta-btn" id="calc-btn" onclick="calcular()">
-      Calcular meus custos ocultos →
-    </button>
+    <div class="diesel-warning" id="diesel-warn">
+      <div>⚠</div>
+      <div>
+        <strong>Combustível não atendido</strong>
+        A Versa Fuel atua exclusivamente com frotas movidas a gasolina e etanol. Para frotas a diesel, entre em contato para conhecer outras soluções.
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Tipo de veículo</label>
+      <div class="vehicle-grid">
+        <div class="vehicle-opt" onclick="selectVehicle('passeio')" id="v-passeio">
+          <span class="vehicle-icon">🚗</span>
+          Carro de passeio
+        </div>
+        <div class="vehicle-opt" onclick="selectVehicle('utilitario')" id="v-utilitario">
+          <span class="vehicle-icon">🚐</span>
+          Utilitário leve
+        </div>
+        <div class="vehicle-opt" onclick="selectVehicle('moto')" id="v-moto">
+          <span class="vehicle-icon">🏍</span>
+          Moto
+        </div>
+        <div class="vehicle-opt" onclick="selectVehicle('suv')" id="v-suv">
+          <span class="vehicle-icon">🚙</span>
+          SUV
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="cta-btn" id="calc-btn" onclick="calcular()">
+  Calcular meus custos ocultos →
+</button>
+
   </div>
 
   <!-- RESULTS -->
+
   <div class="results" id="results">
 
-    <!-- VISIBLE: main number always shown -->
-    <div class="result-total-card">
-      <div class="r-eyebrow">Custo oculto anual estimado</div>
-      <div class="r-total-value" id="r-total">R$ 0</div>
-      <div class="r-total-sub" id="r-frota-info">para uma frota de — veículos</div>
-    </div>
+<!-- VISIBLE: main number always shown -->
+<div class="result-total-card">
+  <div class="r-eyebrow">Custo oculto anual estimado</div>
+  <div class="r-total-value" id="r-total">R$ 0</div>
+  <div class="r-total-sub" id="r-frota-info">para uma frota de — veículos</div>
+</div>
 
-    <div class="bottom-cta result-lead-form" id="bottom-cta">
-      <div class="bc-title">Receba o diagnóstico da sua frota</div>
-      <div class="bc-sub">Preencha seus dados para receber o relatório e entender como a Versa pode reduzir deslocamentos, retrabalho e riscos no abastecimento.</div>
+<div class="bottom-cta result-lead-form" id="bottom-cta">
+  <div class="bc-title">Receba o diagnóstico da sua frota</div>
+  <div class="bc-sub">Preencha seus dados para receber o relatório e entender como a Versa pode reduzir deslocamentos, retrabalho e riscos no abastecimento.</div>
 
-      <div class="fields-grid lead-result-fields">
-        <div class="field">
-          <label>Nome completo</label>
-          <div class="input-wrap">
-            <input type="text" id="lead-nome" placeholder="Seu nome">
-          </div>
-        </div>
-        <div class="field">
-          <label>E-mail corporativo</label>
-          <div class="input-wrap">
-            <input type="email" id="lead-email" placeholder="voce@empresa.com.br">
-          </div>
-        </div>
-        <div class="field">
-          <label>WhatsApp</label>
-          <div class="input-wrap">
-            <input type="tel" id="lead-whatsapp" placeholder="(11) 9 0000-0000" oninput="maskPhone(this)">
-            <span class="input-suffix">📱</span>
-          </div>
-        </div>
-      </div>
-
-      <button class="cta-btn lead-submit-btn" id="lead-submit-btn" onclick="enviarLeadResultado()">
-        Receber meu relatório →
-      </button>
-      <div class="lead-success" id="lead-success">Dados enviados com sucesso. A equipe da Versa entrará em contato.</div>
-    </div>
-
-
-    <div class="pv-row">
-          <div class="pv-card">
-            <div class="pv-label">Por veículo / ano</div>
-            <div class="pv-value" id="r-por-veiculo">R$ 0</div>
-          </div>
-          <div class="pv-card highlight">
-            <div class="pv-label">Economia c/ Versa / ano</div>
-            <div class="pv-value" id="r-economia">R$ 0</div>
-          </div>
-        </div>
-        <div class="breakdown-card">
-      <div class="breakdown-header">Composição dos custos ocultos</div>
-      <div class="breakdown-row">
-        <div class="bd-dot" style="background:#00e5a0"></div>
-        <div class="bd-name">Mão de obra para abastecer</div>
-        <div class="bd-bar-wrap"><div class="bd-bar" id="bar-l" style="background:#00e5a0;width:0%"></div></div>
-        <div class="bd-val" id="r-l">R$ 0</div>
-        <div class="bd-pct" id="p-l">0%</div>
-      </div>
-      <div class="breakdown-row">
-        <div class="bd-dot" style="background:#5BB8D0"></div>
-        <div class="bd-name">Combustível para deslocamento</div>
-        <div class="bd-bar-wrap"><div class="bd-bar" id="bar-f" style="background:#5BB8D0;width:0%"></div></div>
-        <div class="bd-val" id="r-f">R$ 0</div>
-        <div class="bd-pct" id="p-f">0%</div>
-      </div>
-      <div class="breakdown-row">
-        <div class="bd-dot" style="background:#E8A44A"></div>
-        <div class="bd-name">Manutenção dos desvios</div>
-        <div class="bd-bar-wrap"><div class="bd-bar" id="bar-m" style="background:#E8A44A;width:0%"></div></div>
-        <div class="bd-val" id="r-m">R$ 0</div>
-        <div class="bd-pct" id="p-m">0%</div>
-      </div>
-      <div class="breakdown-row">
-        <div class="bd-dot" style="background:#9B87D4"></div>
-        <div class="bd-name">Depreciação adicional</div>
-        <div class="bd-bar-wrap"><div class="bd-bar" id="bar-d" style="background:#9B87D4;width:0%"></div></div>
-        <div class="bd-val" id="r-d">R$ 0</div>
-        <div class="bd-pct" id="p-d">0%</div>
-      </div>
-      <div class="breakdown-row">
-        <div class="bd-dot" style="background:#E8626A"></div>
-        <div class="bd-name">Risco de fraudes</div>
-        <div class="bd-bar-wrap"><div class="bd-bar" id="bar-fr" style="background:#E8626A;width:0%"></div></div>
-        <div class="bd-val" id="r-fr">R$ 0</div>
-        <div class="bd-pct" id="p-fr">0%</div>
+  <div class="fields-grid lead-result-fields">
+    <div class="field">
+      <label>Nome completo</label>
+      <div class="input-wrap">
+        <input type="text" id="lead-nome" placeholder="Seu nome">
       </div>
     </div>
+    <div class="field">
+      <label>E-mail corporativo</label>
+      <div class="input-wrap">
+        <input type="email" id="lead-email" placeholder="voce@empresa.com.br">
+      </div>
+    </div>
+    <div class="field">
+      <label>WhatsApp</label>
+      <div class="input-wrap">
+        <input type="tel" id="lead-whatsapp" placeholder="(11) 9 0000-0000" oninput="maskPhone(this)">
+        <span class="input-suffix">📱</span>
+      </div>
+    </div>
+  </div>
 
-    <span class="recalc-link" onclick="recalcular()">← Refazer o cálculo</span>
+  <button class="cta-btn lead-submit-btn" id="lead-submit-btn" onclick="enviarLeadResultado()">
+    Receber meu relatório →
+  </button>
+  <div class="lead-success" id="lead-success">Dados enviados com sucesso. A equipe da Versa entrará em contato.</div>
+</div>
+
+
+<div class="pv-row">
+      <div class="pv-card">
+        <div class="pv-label">Por veículo / ano</div>
+        <div class="pv-value" id="r-por-veiculo">R$ 0</div>
+      </div>
+      <div class="pv-card highlight">
+        <div class="pv-label">Economia c/ Versa / ano</div>
+        <div class="pv-value" id="r-economia">R$ 0</div>
+      </div>
+    </div>
+    <div class="breakdown-card">
+  <div class="breakdown-header">Composição dos custos ocultos</div>
+  <div class="breakdown-row">
+    <div class="bd-dot" style="background:#00e5a0"></div>
+    <div class="bd-name">Mão de obra para abastecer</div>
+    <div class="bd-bar-wrap"><div class="bd-bar" id="bar-l" style="background:#00e5a0;width:0%"></div></div>
+    <div class="bd-val" id="r-l">R$ 0</div>
+    <div class="bd-pct" id="p-l">0%</div>
+  </div>
+  <div class="breakdown-row">
+    <div class="bd-dot" style="background:#5BB8D0"></div>
+    <div class="bd-name">Combustível para deslocamento</div>
+    <div class="bd-bar-wrap"><div class="bd-bar" id="bar-f" style="background:#5BB8D0;width:0%"></div></div>
+    <div class="bd-val" id="r-f">R$ 0</div>
+    <div class="bd-pct" id="p-f">0%</div>
+  </div>
+  <div class="breakdown-row">
+    <div class="bd-dot" style="background:#E8A44A"></div>
+    <div class="bd-name">Manutenção dos desvios</div>
+    <div class="bd-bar-wrap"><div class="bd-bar" id="bar-m" style="background:#E8A44A;width:0%"></div></div>
+    <div class="bd-val" id="r-m">R$ 0</div>
+    <div class="bd-pct" id="p-m">0%</div>
+  </div>
+  <div class="breakdown-row">
+    <div class="bd-dot" style="background:#9B87D4"></div>
+    <div class="bd-name">Depreciação adicional</div>
+    <div class="bd-bar-wrap"><div class="bd-bar" id="bar-d" style="background:#9B87D4;width:0%"></div></div>
+    <div class="bd-val" id="r-d">R$ 0</div>
+    <div class="bd-pct" id="p-d">0%</div>
+  </div>
+  <div class="breakdown-row">
+    <div class="bd-dot" style="background:#E8626A"></div>
+    <div class="bd-name">Risco de fraudes</div>
+    <div class="bd-bar-wrap"><div class="bd-bar" id="bar-fr" style="background:#E8626A;width:0%"></div></div>
+    <div class="bd-val" id="r-fr">R$ 0</div>
+    <div class="bd-pct" id="p-fr">0%</div>
+  </div>
+</div>
+
+<span class="recalc-link" onclick="recalcular()">← Refazer o cálculo</span>
 
   </div>
 
@@ -1246,6 +700,7 @@ function hideResults() {
   document.getElementById('form-area').style.display = 'block';
 }
 </script>
+
 <script>
 function sendHeight() {
     const height = document.documentElement.scrollHeight;
@@ -1270,5 +725,6 @@ observer.observe(document.body, {
 
 setInterval(sendHeight, 1000);
 </script>
+
 </body>
 </html>
